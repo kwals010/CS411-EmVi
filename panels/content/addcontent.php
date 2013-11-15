@@ -70,7 +70,7 @@ if (!empty($_POST)) {
 		echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
 	}
 	else if ($_FILES["file"]["size"] > 0) {
-		list($fname,$temp) = split('\.', $_FILES["file"]["name"]);
+		//list($fname,$temp) = split('\.', $_FILES["file"]["name"]);
 		echo "Upload: " . $_FILES["file"]["name"] . "<br>";
 		echo "Type: " . $_FILES["file"]["type"] . "<br>";
 		echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
