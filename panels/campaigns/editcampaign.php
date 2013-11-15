@@ -5,6 +5,7 @@ set_include_path("../");
 /*Include sidebar */
 //include("../../inc/sidebar.php");
 //showSidebar("editcontent");
+include_once '../../pages/include/config.php';
 
 include_once '../../pages/campaigns/campaignclass.php';
 //include_once '../../pages/workflow/workflowclass.php';
@@ -104,15 +105,16 @@ function validateForm()
 	}	
 
 ?>
-
+<div style="overflow:auto">
 <form name="aContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <table width="450px"><tr>
 		<td>Content name:</td>
 		<td><input type="text" name="name" value="<?php echo $campaign['campaignName'];?>" /></td>
-	</tr>
+		</tr>
 	<tr>
 		<td>Content description:</td>
 		<td><input type="text" name="description" value="<?php echo $campaign['campaignDescription'];?>" /></td>
+		
 	</tr>
 	<tr>
 	<td>Content keywords</td>
@@ -319,3 +321,4 @@ $assignRev = mysql_fetch_assoc($reviewers);
 <form>
 <input name="Delete" type="submit" value="Delete this Campaign" />
 </form>
+</div>

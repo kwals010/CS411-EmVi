@@ -6,7 +6,7 @@ $to = "dssmwise@gmail.com";
  $txt =	$txt.  "You can log at http://www.ubno.com/EMVI/ once your account is approved\n\n";
  
  $txt = $txt. "If you experiance problems logging into the site please contact\n\nDavid Wise\n540-663-4059\nDSSMWise@gmail.com.";
- $headers = "From: Admin@emvious.com";
+ $headers = "From: Administrator@emvi.com";
  
 mail($to,$subject,$txt,$headers);
 

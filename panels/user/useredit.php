@@ -163,16 +163,48 @@ function validateForm() {
 	
 	if(isset($_POST['Update']))
 	{
+	
+	if ($_POST['userAccountStatus'] == "on"){
+		$accountStatus = 0;
+		}else{
+		$accountStatus = 1;
+		}
+		
+	
+		if ($edit->userAccountStatus != $accountStatus){
+			if ($accountStatus == 0){
+				$to = $_POST['userEMailAddress'];
+ 				$subject = "EMVI Account Status";
+ 				$txt = "Test disabled";
+ 				$headers = "From: Administrator@emvi.com";
+ 
+				mail($to,$subject,$txt,$headers);
+				
+			}else{
+				
+				$to = $_POST['userEMailAddress'];
+ 				$subject = "EMVI Account Status";
+ 				$txt = "Test Enabled";
+ 				$headers = "From: Administrator@emvi.com";
+ 
+				mail($to,$subject,$txt,$headers);
+
+			}
+		}
+	
+	
 		$edit->userFirstName = $_POST['userFirstName'];
 		$edit->userLastName = $_POST['userLastName'];
 		$edit->userEMailAddress = $_POST['userEMailAddress'];
 		$edit->userPhoneNumber = $_POST['userPhoneNumber'];
-		if ($_POST['userAccountStatus'] == "on"){
+		$edit->userAccountStatus = $accountStatus;
+
+		/*if ($_POST['userAccountStatus'] == "on"){
 		$edit->userAccountStatus = 0;
 		}else{
 		$edit->userAccountStatus = 1;
 		}
-		if ($_POST['userRole'] == "User"){
+*/		if ($_POST['userRole'] == "User"){
 		$edit->userRole = 0;
 		}else{
 		$edit->userRole = 1;

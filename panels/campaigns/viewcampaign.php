@@ -8,7 +8,7 @@
 	color: #FAF6F6;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
-	background-color: #117CF8;
+	background-color: #000080;
 	text-align: center;
 
 }
@@ -26,6 +26,7 @@
 
 
 </style>
+
 </head>
 
 
@@ -38,26 +39,93 @@ set_include_path("../");
 /*Include sidebar */
 //include("../../inc/sidebar.php");
 //showSidebar("an_example");
+include_once '../../pages/include/config.php';
+include_once '../../pages/campaigns/campaignclass.php';
 
 include_once '../../pages/user/userclass.php';
+include_once '../../pages/content/contentclass.php';
+include_once '../../pages/email/emailclass.php';
+include_once '../../config/general.php';
 
 session_start();
 $uid = $_SESSION['ID'];
 $campaignID = $_GET['ID'];
 
-include_once '../../pages/campaigns/campaignclass.php';
-$con = new Campaign();
+$cam = new Campaign();
 
-$reviewers = $con->get_reviewers($campaignID);
-$archiveComm = $con->get_archiveComment($campaignID);
+$reviewers = $cam->get_reviewers($campaignID);
+$archiveComm = $cam->get_archiveComment($campaignID);
+
+
+
 ?>
 
-<div style="border-style: solid; border: medium; border-color: black;">
 
 
-<h5>Preview Campaign</h5>
+
+
+
+<h5>Attached Emails</h5>
+<?php
+$emailArray = $cam->get_attachedEmail($campaignID);
+$em = new Email();
+while ($email = mysql_fetch_assoc($emailArray)){
+	$eid = $email['emailID'];
+	
+	
+	$email = $em->get_emailByID($eid);
+	echo "<div style=\"border: medium none black; overflow: auto; width: 1200px;background-color:gray \">";
+	echo "Name: $email[emailName]<br>
+		Description: $email[emailDescription]<br>
+		From Name: $email[emailFromName]<br>
+		From Address: $email[emailFromAddress]<br>
+		Subject: $email[emailSubject]<br>";
+	
+	// Get HTML content to display
+	$con = new Content();
+	$html = $con->get_contentByID($email[emailHTML]);
+	$text = $con->get_contentByID($email[emailText]);
+	echo '<br><table align="left" cellpadding="0" cellspacing="0" width="300">
+			<tr><td align="left">HTML:</td><td align="left">Text:</td></tr>
+			<tr><td align="left">
+				<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="600"></a></td>
+			<td align="left">
+				<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="600"></a></td></tr>
+			<tr><td align="left">Keywords: ' . $email[emailKeywords] . '</td></tr>
+			<tr><td><input name="Send Test" type="button" value="Send Test" /></td></tr>
+			</table>';
+			
+		echo "</div>";	
+		echo "<hr />";
+}
+?>
+
+<div style="border: medium none black; overflow: auto; width: 1200px; ">
+
 <h5>Reviewers</h5>
-<h5>Other stuff to allow approval to happen</h5>
+<?php
+$reviewers = $cam->get_reviewers($campaignID);
+?>
+<table>
+	<tbody class="tablebody">
+		
+			<?php
+			While ($assignRev = mysql_fetch_assoc($reviewers)){
+				
+				
+				echo "<tr>";
+				echo	"<td class=\"tablebody\">".$assignRev['userLastName']. ", ".$assignRev['userFirstName'] ."</td>";
+				echo "</tr>";
+				
+			}
+			 mysql_data_seek($reviewers,0);
+			?>
+		</tbody>
+	</table>
+
+
+
+
 
 <h5>Current Review Comments</h5>
 	<table>
@@ -76,10 +144,10 @@ $archiveComm = $con->get_archiveComment($campaignID);
 			<?php
 			While ($assignRev = mysql_fetch_assoc($reviewers)){
 				
-				if ($con->get_reviewerComment($assignRev['reviewerID'], $campaignID) != ""){
+				if ($cam->get_reviewerComment($assignRev['reviewerID'], $campaignID) != ""){
 				echo "<tr>";
 				echo	"<td class=\"tablebody\">".$assignRev['userLastName']. ", ".$assignRev['userFirstName'] ."</td>";
-				echo	"<td class=\"tablebody\">".$con->get_reviewerComment($assignRev['reviewerID'], $campaignID )."</td>";
+				echo	"<td class=\"tablebody\">".$cam->get_reviewerComment($assignRev['reviewerID'], $campaignID )."</td>";
 				echo	"<td class=\"tablebody\">";
 				if ($assignRev['reviewResult'] == 1){
 					echo "Approved";

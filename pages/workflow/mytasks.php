@@ -83,7 +83,7 @@ $mainNav.set("Home"); // this line colors the top button main nav with the text 
 		echo "<td class=\"tablebody\">".$row['userFirstName']." ".$row['userLastName']."</td>";
 		echo "<td class=\"tablebody\">".$row['campaignDescription']."</td>";
 		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/viewcampaign.php?ID=".$row['campaignID']."\">View</a></td>";
-		if ($row['wfStatusName'] == "In Review" || $row['canEdit'] == 0){
+		if ($row['wfStatusName'] == "In Review" || $row['canEdit'] == 0 || $row['wfStatusName'] == "Approved"){
 		echo "<td class=\"tablebody\"></td>";
 		}else{
 		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/editcampaign.php?ID=".$row['campaignID']."&page=a\">Edit</a></td>";

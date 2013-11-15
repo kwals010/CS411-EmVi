@@ -8,6 +8,7 @@ $subNav = array(
 
 set_include_path("../");
 include("../../inc/essentials.php");
+include_once '../content/include/config.php';
 include_once 'emailclass.php';
 session_start();
 $uid = $_SESSION['ID'];

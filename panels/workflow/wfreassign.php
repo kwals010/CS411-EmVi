@@ -6,11 +6,27 @@ set_include_path("../");
 include("../../inc/sidebar.php");
 //showSidebar("addcampaign");
 
+
+if (isset($_POST['Reassign'])){
+	include_once '../../pages/include/config.php';
+
+	include_once '../../pages/campaigns/campaignclass.php';
+	include_once '../../config/general.php';
+	
+	echo "Reassigning campaign ". $_POST['campaignID'] ." to " . $_POST['assignTo'];
+	$con = new Campaign();
+	$newOwner = $con->set_NewOwner($_POST['campaignID'], $_POST['assignTo']);
+	
+	header('Location: '.$siteUrl.'member.php#!/url=workflow/mytasks.php');
+
+}
 ?>
 
+
+
 <h5>Select a new owner</h5>
-<form>
-<select name="Reviewer1" >
+<form name="reassign" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+<select name="assignTo" >
 		<option value="none">No Selection</option>
 
 <?php 
@@ -34,7 +50,8 @@ include("../../inc/sidebar.php");
  mysql_data_seek($list ,0);
 ?>
 		</select>
-
+<input name="campaignID" type="hidden" value="<?php echo $_GET['ID']; ?>"/>
+<input name="Reassign" type="submit" value="Reassign" />
 </form>
 
 

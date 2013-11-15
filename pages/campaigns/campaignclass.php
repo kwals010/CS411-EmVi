@@ -1,5 +1,5 @@
 <?php
-include_once 'include/config.php';
+//include_once 'include/config.php';
 class Campaign {
 	//Database connect
 	public function __construct() {
@@ -52,7 +52,7 @@ public function get_statusIDByName($status) {
 	}
 
  	// Returns an array of content
-public function get_campaign($sort,$dir)
+	public function get_campaign($sort,$dir)
  	{
  		// Returns a 3-D array with the following:
  		// ID, Name, Description, Keywords, TypeID, Format, CreatedDate, CreatedByID, CreatedByName, 
@@ -120,6 +120,8 @@ public function get_campaign($sort,$dir)
 			OR die(mysql_error());
 		//echo $sql;
  	}
+ 	
+ 	
  	public function edit_campaign($cid,$uid,$name,$desc,$kw,$status,$ldate)
  	{
 		echo $cid."</br>";
@@ -199,7 +201,7 @@ public function get_campaign($sort,$dir)
 	
 	public function get_reviewers($cid)
  	{
-		$sql = "SELECT `reviewerID`, `reviewResult`, `reviewOrder`, `userFirstName`, `userLastName`, `commentDate` FROM `tbl_reviewers` 
+		$sql = "SELECT `reviewerID`, `reviewResult`, `reviewOrder`, `userFirstName`, `userLastName`, `userEmailAddress`, `commentDate` FROM `tbl_reviewers` 
 left join tbl_user on `userID` = `reviewerID` 
 WHERE `campaignID` = ".$cid." order by `reviewOrder` asc";
  		
@@ -261,6 +263,51 @@ WHERE `campaignID` = ".$cid." order by `reviewOrder` asc";
 
  		
  	}
+ 	
+ 	public function set_NewOwner($cid, $newuid){
+ 	
+ 		$sql = "UPDATE `tbl_campaigns` SET `updatedBy`= ".$newuid." ,`canEdit`= ".$newuid." WHERE `campaignID` = ".$cid." ";
+ 		
+ 		$res = mysql_query($sql) 
+			OR die("you have an error " . mysql_error());
+ 	}
+ 	
+ 	public function attachContent($cid, $eid){
+ 	
+ 		//verify that this pair does not exist in the database already.
+ 		$checksql = "SELECT * From `tbl_emailToCampaigns` Where `campaignID` = '".$cid."' and `emailID` = '".$eid."'";
+ 		$check = mysql_query($checksql) 
+			OR die("you have an error " . mysql_error());
+
+ 		
+ 		//Add emailID and campaignID to lookup table
+ 		if (mysql_num_rows($check) == 0){
+	 		$sql = "INSERT INTO `tbl_emailToCampaigns`(`campaignID`, `emailID`) VALUES ('".$cid."', '".$eid."')";
+	 		
+	 		$res = mysql_query($sql) 
+				OR die("you have an error " . mysql_error());
+		}
+ 	}
+	
+	public function get_attachedEmail($cid){
+		
+		$sql = "Select * From `tbl_emailToCampaigns` WHERE `campaignID` = '".$cid."'";
+ 		
+ 		$res = mysql_query($sql) 
+			OR die("you have an error " . mysql_error());
+		return $res;
+		
+	}
+ 	
+ 	public function detach_emailFromCampaign($cid, $eid){
+		
+		$sql = "DELETE From `tbl_emailToCampaigns` WHERE `campaignID` = '".$cid."' and `emailID`= '".$eid."'";
+ 		
+ 		$res = mysql_query($sql) 
+			OR die("you have an error " . mysql_error());
+				
+	}
+
 
 }
 ?>

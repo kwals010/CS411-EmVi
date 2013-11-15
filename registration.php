@@ -171,7 +171,7 @@ if($bgImage!=""){
 
 
  // Connects to your Database 
-include 'config/DB_Connect.php';
+//include 'config/DB_Connect.php';
 include 'config/functions.php';
 //Message class used to retrieve any messages sent to this page.			
 
@@ -232,25 +232,35 @@ or die(mysql_error());
  			'".$_POST['userPhoneNumber']."', '".$_POST['pass']."')";
  	$add_member = mysql_query($insert) or die(mysql_error());
  	$msgID[0] = 700;
+ 	
+ 	//Get site admin and site url from DB to use in email notification.  These will be set using the site administraion functions.
+ 	$current = mysql_fetch_assoc(mysql_query("SELECT `configBlockCode` FROM `tbl_siteConfig` WHERE `configObject`='adminUserID'"));
+
+ 	$sql =mysql_query("SELECT * FROM `tbl_user` WHERE `userID` = ".$current['configBlockCode']."")or die(mysql_error());
+		$admin = mysql_fetch_assoc($sql);
+		
+ 	 $to = $_POST['userEMailAddress'];
+ 	$subject = "EmVi Registration";
+ 	$txt = "Thank you! \n\nYou have successfully requested access to the EMVI tool.\n\n\n\n Your username is ".$_POST['userEMailAddress']." . \n";
+ 	$txt =	$txt.  "You will receive another email once your account has been approved.";
+ 
+ 	$txt = $txt. "If you experiance problems logging into the site or have questions about your account please contact\n\n".$admin['userFirstName']." ".$admin['userLastName']."\n".$admin['userEMailAddress']."\n".$admin['userPhoneNumber'].".";
+ 	$headers = "From: Admin@emvious.com";
+ 
+	mail($to,$subject,$txt,$headers);
+
+ 	
  	unset($_POST['userFirstName']);
  	unset($_POST['userLastName']);
  	unset($_POST['userEMailAddress']);
  	unset($_POST['userPhoneNumber']);
  	}
+ 	
+ 	
+ 	
  
- /*$to = "".$_POST['userEMailAddress']."";
- $subject = "EMVI Registration";
- $txt = "Thank you! \n\nYou have successfully requested access to the EMVI tool.\n\n\n\n Your username is ".$userEMailAddress." . \n";
- $txt =	$txt.  "You can log at http://www.ubno.com/EMVI/ once your account is approved\n\n";
- 
- $txt = $txt. "If you experiance problems logging into the site please contact\n\nDavid Wise\n540-663-4059\nDSSMWise@gmail.com.";
- $headers = "From: Admin@emvious.com";
- 
-mail($to,$subject,$txt,$headers);
 
-		$error = 'Thank You for registering for access.  Your account request is being verified!  You will be notified at the E-Mail address the you registered with this account once the account has been verified.';
-*/		
-
+	
 		
 	
 ?>

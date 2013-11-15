@@ -1,5 +1,5 @@
 <?php
-include_once '../content/include/config.php';
+//include_once '../content/include/config.php';
 class Email {
 	
 	public $emailID;

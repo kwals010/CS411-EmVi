@@ -149,15 +149,46 @@ $edit = $edit->withID($_GET['ID']);
 	
 	if(isset($_POST['Update']))
 	{
+	if ($_POST['userAccountStatus'] == "on"){
+		$accountStatus = 0;
+		}else{
+		$accountStatus = 1;
+		}
+		echo $this->userAccountStatus ."<br>";
+		echo $accountStatus . <br>;
+	
+	
+		if ($this->userAccountStatus != $accountStatus){
+			if ($accountStatus == 0){
+				$to = $this->userEMailAddress;
+ 				$subject = "EMVI Account Status";
+ 				$txt = $this->userAccountStatus. "Your Account for (need to put site url) has been disabled.  You will no longer have access to the EmVi tool.  If you feel this was in error\n
+ 				please contact the site administrator.  (Blah Blah) ";
+ 				$headers = "From: Administrator@emvi.com";
+ 
+				mail($to,$subject,$txt,$headers);
+				
+			}else{
+				
+				$to = $this->userEMailAddress;
+ 				$subject = "EMVI Account Status";
+ 				$txt = "Your Account for (need to put site url) has been enabled.  You can now log into the site and beging using the tools.  (Blah Blah) ";
+ 				$headers = "From: Administrator@emvi.com";
+ 
+				mail($to,$subject,$txt,$headers);
+
+			}
+	
+	
 		$edit->userFirstName = $_POST['userFirstName'];
 		$edit->userLastName = $_POST['userLastName'];
 		$edit->userEMailAddress = $_POST['userEMailAddress'];
 		$edit->userPhoneNumber = $_POST['userPhoneNumber'];
-		if ($_POST['userAccountStatus'] == "on"){
-		$edit->userAccountStatus = 0;
-		}else{
-		$edit->userAccountStatus = 1;
-		}
+		//if ($_POST['userAccountStatus'] == "on"){
+		$edit->userAccountStatus = $accountStatus;
+		//}else{
+		//$edit->userAccountStatus = 1;
+		//}
 		if ($_POST['userRole'] == "User"){
 		$edit->userRole = 0;
 		}else{
@@ -165,19 +196,19 @@ $edit = $edit->withID($_GET['ID']);
 		}
 		$msgID = $edit->user_update();
 		include_once '../config/general.php';		
-		header('Location: '.$siteUrl.'member.php#!/account?msgID='.$msgID);
+		//header('Location: '.$siteUrl.'member.php#!/account?msgID='.$msgID);
 		
 	}
 	if(isset($_POST['Remove'])){
 		$msgID = $edit->userRemove();
 		include_once '../config/general.php';	
-		header('Location: '.$siteUrl.'member.php#!/account?msgID='.$msgID);
+		//header('Location: '.$siteUrl.'member.php#!/account?msgID='.$msgID);
 
 	}
 	if(isset($_POST['cPassword'])){
 		$msgID = $edit->user_change_password($_POST['password'], $_POST['cpassword']);
 		include_once '../config/general.php';	
-		header('Location: '.$siteUrl.'member.php#!/account?msgID='.$msgID);
+		//header('Location: '.$siteUrl.'member.php#!/account?msgID='.$msgID);
 
 	}
 

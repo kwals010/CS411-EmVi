@@ -87,9 +87,11 @@ class User
  		return 405;
  		}
 
-
+			
   		mysql_query("UPDATE tbl_user SET userFirstName = '".$this->userFirstName."', userLastName = '".$this->userLastName."', userEMailAddress = '".$this->userEMailAddress."', userPhoneNumber = '".$this->userPhoneNumber."', userAccountStatus = '".$this->userAccountStatus."', userRole = '".$this->userRole."' WHERE userID = '".$this->userID."'")or die(mysql_error());
   		return 701;
+  		
+  		
   			
 	}
 

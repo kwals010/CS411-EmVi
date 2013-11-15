@@ -9,7 +9,7 @@ set_include_path("../");
 /*Include sidebar */
 include("../../inc/sidebar.php");
 //showSidebar("addcontent");
-
+include_once '../../content/include/config.php';
 include_once '../../pages/content/contentclass.php';
 include_once '../../pages/user/userclass.php';
 include_once '../../config/general.php';
