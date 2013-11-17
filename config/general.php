@@ -1,6 +1,6 @@
 <?php
 /* GENERAL CONFIG */
-include_once '../../config/DB_Connect.php';
+include_once 'DB_Connect.php';
 $siteTitle = 'EmVi'; /* will be displayed above the url-bar / in tab / on Google */
 $siteName = 'EmVi'; /* The biggest title on your homepage */
 $siteDesc ='The Competitors will be Emvious'; /* subtitle on your homepage */

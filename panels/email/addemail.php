@@ -9,12 +9,12 @@ set_include_path("../");
 /*Include sidebar */
 include("../../inc/sidebar.php");
 //showSidebar("addcontent");
-include_once '../../content/include/config.php';
+
+include_once '../../config/DB_Class.php';
 include_once '../../pages/email/emailclass.php';
 include_once '../../pages/content/contentclass.php';
-include_once '../../config/general.php';
 include_once '../../pages/user/userclass.php';
-
+include_once '../../config/general.php';
 
 session_start();
 

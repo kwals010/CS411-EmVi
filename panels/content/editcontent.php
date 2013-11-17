@@ -9,10 +9,11 @@ set_include_path("../");
 /*Include sidebar */
 //include("../../inc/sidebar.php");
 //showSidebar("editcontent");
-include_once '../../content/include/config.php';
+
+include_once '../../config/general.php';
+include_once '../../config/DB_Class.php';
 include_once '../../pages/content/contentclass.php';
 include_once '../../pages/user/userclass.php';
-include_once '../../config/general.php';
 
 session_start();
 
@@ -222,7 +223,7 @@ if (!empty($_POST)) {
 	echo '<table><tr><td align="center">';
 	
 	if ($ftypename == 'html' || $ftypename == 'txt') {
-		echo '<form><input type="button" value="Hot Edit Content" style="background-color:#c00; color:#fff;" ONCLICK="window.open(\''.$siteUrl .'pages/ckeditor.php?name='.$fileloc.'.'.$ftypename.'\');" ></form></td></tr>
+		echo '<form><input type="button" value="Hot Edit Content" style="background-color:#c00; color:#fff;"></form></td></tr>
 		<td align="center"><a href="content/upload/' . $fileloc . '.' . $ftypename . '" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $fileloc . '.png" width="250">
 		</a>';
 	}

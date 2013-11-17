@@ -1,5 +1,5 @@
 <?php
-//include_once 'include/config.php';
+include_once 'include/config.php';
 class Content {
 	
 	public $contentID;  			// assigned at create
@@ -232,6 +232,10 @@ public function get_content($sort,$dir)
  			OR die(mysql_error());
  			
  	}
+ 	
+ 	public function unlock_content($cid,$uid)
+ 	{
+ 	} 	
 	
 }
 ?>
