@@ -1,3 +1,7 @@
+<?php 
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+?>
 <h1>Add Content</h1>
 <?php
 set_include_path("../");
@@ -5,7 +9,8 @@ set_include_path("../");
 /*Include sidebar */
 include("../../inc/sidebar.php");
 //showSidebar("addcontent");
-include_once '../../content/include/config.php';
+
+include_once '../../config/DB_Class.php';
 include_once '../../pages/content/contentclass.php';
 include_once '../../pages/user/userclass.php';
 include_once '../../config/general.php';

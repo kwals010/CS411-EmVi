@@ -13,5 +13,18 @@ $con = mysql_connect(HOST,USER,PASSWORD);
 mysql_select_db(DATABASE, $con);
  
 //$mysql = new mysql(HOST, USER, PASSWORD, DATABASE);
+
+/*
+class DB_Class
+{
+	function __construct()
+	{
+		$connection = mysql_connect(HOST, USER, PASSWORD) or
+		die('Oops connection error -> ' . mysql_error());
+		mysql_select_db(DATABASE, $connection)
+		or die('Database error -> ' . mysql_error());
+	}
+}
+*/
  ?>
 

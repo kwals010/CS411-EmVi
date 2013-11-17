@@ -1,21 +1,21 @@
 <?php
 
 $subNav = array(
-	"All Email ; email.php ; #F98408;",
-	"My Email ; myemail.php ; #F98408;",
+	"All Email ; email/email.php ; #F98408;",
+	"My Email ; email/myemail.php ; #F98408;",
 	"Add Email ; ../panels/email/addemail.php ; #F98408;", 
 );
 
 set_include_path("../");
-include("../../inc/essentials.php");
-include_once '../content/include/config.php';
+include_once '../../config/DB_Class.php';
+include_once '../../inc/essentials.php';
 include_once 'emailclass.php';
 session_start();
 $uid = $_SESSION['ID'];
 
 ?>
 <script>
-//$mainNav.set("email"); // this line colors the top button main nav with the text "home"
+$mainNav.set("email"); // this line colors the top button main nav with the text "home"
 </script>
 
 <?php
@@ -57,6 +57,7 @@ for ($i = 1; $i < count($types); ++$i) {
 		$contentList .= '</td><td>
 			<a href="panels/email/previewemail.php?ID=' . $types[$i]['ID'] . '">Preview</a></td>
 		</tr>';
+
 }
 
 

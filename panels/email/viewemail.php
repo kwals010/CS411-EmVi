@@ -9,7 +9,8 @@ set_include_path("../");
 /*Include sidebar */
 include("../../inc/sidebar.php");
 //showSidebar("addcontent");
-include_once '../../content/include/config.php';
+
+include_once '../../config/DB_Class.php';
 include_once '../../pages/content/contentclass.php';
 include_once '../../pages/email/emailclass.php';
 include_once '../../pages/user/userclass.php';
@@ -36,9 +37,9 @@ $text = $con->get_contentByID($email[emailText]);
 echo '<br><table align="left" cellpadding="0" cellspacing="0" width="300">
 		<tr><td align="left">HTML:</td><td align="left">Text:</td></tr>
 		<tr><td align="left">
-			<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="150"></a></td>
+			<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="200"></a></td>
 		<td align="left">
-			<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="150"></a></td></tr>
+			<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="200"></a></td></tr>
 		<tr><td align="left">Keywords: ' . $email[emailKeywords] . '</td></tr>
 		</table>';
 

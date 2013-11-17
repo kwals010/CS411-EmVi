@@ -7,8 +7,8 @@ $subNav = array(
 );
 
 set_include_path("../");
-include("../../inc/essentials.php");
-include_once '../content/include/config.php';
+include '../../../config/DB_Class.php';
+include_once '../../inc/essentials.php';
 include_once 'contentclass.php';
 
 session_start();

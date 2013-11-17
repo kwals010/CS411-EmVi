@@ -1,5 +1,5 @@
 <?php
-//include_once '../content/include/config.php';
+include_once '../content/include/config.php';
 class Email {
 	
 	public $emailID;
@@ -90,6 +90,35 @@ public function get_email($sort,$dir)
  		return $arr;
  	}
  
+ 	public function update_email($uid,$eid,$name,$desc,$kw,$fname,$subj,$faddress,$txt,$html)
+ 	{
+ 		$sql = "UPDATE `tbl_email`
+ 		SET
+ 		emailName = '$name',
+ 		emailDescription = '$desc',
+ 		emailKeywords = '$kw',
+ 		emailFromName = '$fname',
+ 		emailFromAddress = '$faddress',
+ 		emailText = '$txt',
+ 		emailHTML = '$html',
+ 		updatedDate = NOW(),
+ 		updatedBy = '$uid'
+ 		WHERE emailID = '$eid'";
+ 			
+ 		mysql_query($sql)
+ 			OR die(mysql_error());
+ 	}
+ 	
+ 	public function delete_email($eid)
+ 	{
+ 		$sql = "DELETE FROM `tbl_email`
+ 		WHERE emailID = '$eid'";
+ 			
+ 		mysql_query($sql)
+ 			OR die(mysql_error());
+ 			
+ 	}
+ 	
 	
 }
 ?>
