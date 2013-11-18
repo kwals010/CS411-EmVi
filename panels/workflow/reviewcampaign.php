@@ -15,6 +15,7 @@ $campaign = $_GET['ID'];
 
 if (isset($_POST['approve'])){
 	echo "campaign has been approved";
+	include '../../config/DB_Class.php';
 	include_once '../../pages/workflow/workflowclass.php';
 	include_once '../../config/general.php';
 	$myReview = new Workflow();
@@ -25,6 +26,7 @@ if (isset($_POST['approve'])){
 
 if (isset($_POST['reject'])){
 	echo "campaign has been approved";
+	include '../../config/DB_Class.php';
 	include_once '../../pages/workflow/workflowclass.php';
 	include_once '../../config/general.php';
 	$myReview = new Workflow();

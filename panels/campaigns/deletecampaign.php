@@ -5,7 +5,8 @@
 /*Include sidebar */
 //include("../../inc/sidebar.php");
 //showSidebar("an_example");
-include_once '../../pages/include/config.php';
+include '../../config/DB_Class.php';
+
 include_once '../../pages/campaigns/campaignclass.php';
 include_once '../../config/general.php';
 

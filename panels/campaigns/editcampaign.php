@@ -5,7 +5,8 @@ set_include_path("../");
 /*Include sidebar */
 //include("../../inc/sidebar.php");
 //showSidebar("editcontent");
-include_once '../../pages/include/config.php';
+include '../../config/DB_Class.php';
+
 
 include_once '../../pages/campaigns/campaignclass.php';
 //include_once '../../pages/workflow/workflowclass.php';

@@ -9,7 +9,7 @@ $subNav = array(
 
 //set_include_path("../");
 include("../../inc/essentials.php");
-include '../../pages/include/config.php';
+include '../../config/DB_Class.php';
 include_once '../../pages/campaigns/campaignclass.php';
 
 //include("../../inc/essentials.php");

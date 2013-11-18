@@ -193,10 +193,10 @@ function validateForm() {
 		}
 	
 	
-		$edit->userFirstName = $_POST['userFirstName'];
-		$edit->userLastName = $_POST['userLastName'];
-		$edit->userEMailAddress = $_POST['userEMailAddress'];
-		$edit->userPhoneNumber = $_POST['userPhoneNumber'];
+		$edit->userFirstName = mysql_real_escape_string($_POST['userFirstName']);
+		$edit->userLastName = mysql_real_escape_string($_POST['userLastName']);
+		$edit->userEMailAddress = mysql_real_escape_string($_POST['userEMailAddress']);
+		$edit->userPhoneNumber = mysql_real_escape_string($_POST['userPhoneNumber']);
 		$edit->userAccountStatus = $accountStatus;
 
 		/*if ($_POST['userAccountStatus'] == "on"){

@@ -14,7 +14,7 @@ $campaignID = $_GET['ID'];
 }else if(isset($_POST['cid'])){
 $campaignID = $_POST['cid'];
 }
-include_once '../../pages/include/config.php';
+include '../../config/DB_Class.php';
 
 include_once '../../pages/campaigns/campaignclass.php';
 include_once '../../config/general.php';
