@@ -73,7 +73,16 @@ function validateForm()
 }
 </script>
 
+
+
 <?php 
+echo "<script>";
+echo "function openWin()";
+echo "{";
+echo "var myWindow = window.open(\"".$siteUrl ."pages/ckeditor.php?name=".$fileloc.".".$ftypename."\",\"_blank\",\"toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=1100, height=1000\");";
+echo "}";
+echo "</script>";
+
 
 // This section handles the page submission and the saving of data to the database
 if (!empty($_POST)) {
@@ -223,7 +232,7 @@ if (!empty($_POST)) {
 	echo '<table><tr><td align="center">';
 	
 	if ($ftypename == 'html' || $ftypename == 'txt') {
-		echo '<form><input type="button" value="Hot Edit Content" style="background-color:#c00; color:#fff;"></form></td></tr>
+		echo '<form><input type="button" value="Hot Edit Content" style="background-color:#c00; color:#fff;" ONCLICK="openWin()"></form></td></tr>
 		<td align="center"><a href="content/upload/' . $fileloc . '.' . $ftypename . '" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $fileloc . '.png" width="250">
 		</a>';
 	}
