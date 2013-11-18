@@ -1,3 +1,31 @@
+<style type="text/css">
+.tableheaders {
+	width:140px;
+	font-weight: normal;
+	font-size: small;
+	color: #FAF6F6;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	background-color: #000080;
+	text-align: center;
+
+}
+.tablebody {
+	width: 110px;
+	font-weight: normal;
+	font-size: small;
+	color: #000000;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	background-color: #C0C0C0;
+	text-align: center;
+
+}
+
+
+</style>
+
+
 <?php
 
 
@@ -67,17 +95,17 @@ $uid = $_SESSION['ID'];
 
 $contentList = '';
 for ($i = 1; $i < count($f); ++$i) {
-		$contentList .= '<tr><td>'. htmlentities($f[$i]['Name']) . '</td>
-		<td>' . htmlentities($f[$i]['Format']) . '</td>
-		<td>' . htmlentities($f[$i]['Description']) . '</td>
-		<td>' . htmlentities($f[$i]['Keywords']) . '</td>
-		<td>' . date("m/d/Y g:i a", strtotime($f[$i]['UpdatedDate'])) . '</td>
-		<td>' . htmlentities($f[$i]['OwnedByName']) . '</td>
-		<td>';
+		$contentList .= '<tr><td class="tablebody">'. htmlentities($f[$i]['Name']) . '</td>
+		<td class="tablebody">' . htmlentities($f[$i]['Format']) . '</td>
+		<td class="tablebody">' . htmlentities($f[$i]['Description']) . '</td>
+		<td class="tablebody">' . htmlentities($f[$i]['Keywords']) . '</td>
+		<td class="tablebody">' . date("m/d/Y g:i a", strtotime($f[$i]['UpdatedDate'])) . '</td>
+		<td class="tablebody">' . htmlentities($f[$i]['OwnedByName']) . '</td>
+		<td class="tablebody">';
 	if ($f[$i]['FileName'] != '') {
 		$contentList .= '<a href="content/upload/'. $f[$i]['FileName'] .'" target="_blank">View</a>';
 	}
-	$contentList .=	'</td><td>';
+	$contentList .=	'</td><td class="tablebody">';
 	if ($f[$i]['OwnedByID'] == $uid) {
 		if ($type == 'tbl_email'){
 			$contentList .= '<a href="panels/email/editemail.php?ID='.$f[$i]['ID'].'">Edit</a>';
@@ -89,8 +117,8 @@ for ($i = 1; $i < count($f); ++$i) {
 		
 	}
 	$contentList .= '</td>	
-		<td>Clone</td>
-		<td>';
+		<td class="tablebody">Clone</td>
+		<td class="tablebody">';
 	if ($f[$i]['OwnedByID'] == $uid) {
 		$contentList .= 'Delete';
 	}	
@@ -101,43 +129,45 @@ for ($i = 1; $i < count($f); ++$i) {
 
 
     	//DISPLAY THE CONFERENCE REGISTRANTS
-echo '<table width = "100%" cellpadding="3" cellspacing="1" border="1">';
+echo "<table>";
+	echo "<thead class=\"tableheaders\">";
 echo '<tr>';
 if (strtolower($orderby) == 'name' && strtolower($dir) == 'asc') {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Name&dir=desc" style="text-decoration:none;">Content Name</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Name&dir=desc" style="text-decoration:none; color:white">Content Name</td>';
 } else {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Name&dir=asc" style="text-decoration:none;">Content Name</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Name&dir=asc" style="text-decoration:none; color:white">Content Name</td>';
 }
 if (strtolower($orderby) == 'format' && strtolower($dir) == 'asc') {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Format&dir=desc" style="text-decoration:none;">Format</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Format&dir=desc" style="text-decoration:none; color:white">Format</td>';
 } else {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Format&dir=asc" style="text-decoration:none;">Format</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Format&dir=asc" style="text-decoration:none; color:white">Format</td>';
 }
 if (strtolower($orderby) == 'description' && strtolower($dir) == 'asc') {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Description&dir=desc" style="text-decoration:none;">Description</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Description&dir=desc" style="text-decoration:none; color:white">Description</td>';
 } else {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Description&dir=asc" style="text-decoration:none;">Description</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Description&dir=asc" style="text-decoration:none; color:white">Description</td>';
 }
 if (strtolower($orderby) == 'keywords' && strtolower($dir) == 'asc') {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Keywords&dir=desc" style="text-decoration:none;">Keywords</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Keywords&dir=desc" style="text-decoration:none; color:white">Keywords</td>';
 } else {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Keywords&dir=asc" style="text-decoration:none;">Keywords</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=Keywords&dir=asc" style="text-decoration:none; color:white">Keywords</td>';
 }
 if (strtolower($orderby) == 'updatedate' && strtolower($dir) == 'asc') {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=UpdatedDate&dir=desc" style="text-decoration:none;">Last Updated</td>';
+	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=UpdatedDate&dir=desc" style="text-decoration:none; color:white">Last Updated</td>';
 } else {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=UpdatedDate&dir=asc" style="text-decoration:none;">Last Updated</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=UpdatedDate&dir=asc" style="text-decoration:none; color:white">Last Updated</td>';
 }
 if (strtolower($orderby) == 'ownedby' && strtolower($dir) == 'asc') {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=OwnedByName&dir=desc" style="text-decoration:none;">Locked By</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=OwnedByName&dir=desc" style="text-decoration:none; color:white">Locked By</td>';
 } else {
-	echo '<td style="min-width:100px;font-weight:bold;"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=OwnedByName&dir=asc" style="text-decoration:none;">Locked By</td>';
+	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=OwnedByName&dir=asc" style="text-decoration:none; color:white">Locked By</td>';
 }
-echo '<td style="min-width:50px;font-weight:bold"></td>';
+echo '<th class="tableheaders"></td>';
 echo '<td style="min-width:50px;font-weight:bold"></td>';
 echo '<td style="min-width:50px;font-weight:bold"></td>';
 echo '<td style="min-width:50px;font-weight:bold"></td>';
 echo '</tr>';
+echo '</thead>';
 echo $contentList;
 echo '</table>';
 
