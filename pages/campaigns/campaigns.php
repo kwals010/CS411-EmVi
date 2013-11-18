@@ -7,7 +7,8 @@ $subNav = array(
 );
 
 //set_include_path("../");
-include '../../pages/include/config.php';
+include '../../config/DB_Class.php';
+
 include_once 'campaignclass.php';
 
 //include("../../inc/essentials.php");

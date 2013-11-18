@@ -8,7 +8,8 @@ include("../../inc/sidebar.php");
 
 
 if (isset($_POST['Reassign'])){
-	include_once '../../pages/include/config.php';
+include '../../config/DB_Class.php';
+
 
 	include_once '../../pages/campaigns/campaignclass.php';
 	include_once '../../config/general.php';

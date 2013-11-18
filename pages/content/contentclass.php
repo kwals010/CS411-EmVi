@@ -1,5 +1,5 @@
 <?php
-include_once 'include/config.php';
+//include_once 'include/config.php';
 class Content {
 	
 	public $contentID;  			// assigned at create

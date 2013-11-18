@@ -38,6 +38,8 @@ $subNav = array(
 
 set_include_path("../");
 include("../../inc/essentials.php");
+include '../../config/DB_Class.php';
+
 include_once 'workflowclass.php';
 session_start();
 $uid = $_SESSION['ID'];

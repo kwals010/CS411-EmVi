@@ -79,7 +79,14 @@ for ($i = 1; $i < count($f); ++$i) {
 	}
 	$contentList .=	'</td><td>';
 	if ($f[$i]['OwnedByID'] == $uid) {
-		$contentList .= '<a href="panels/content/editcontent.php?ID='.$f[$i]['ID'].'">Edit</a>';
+		if ($type == 'tbl_email'){
+			$contentList .= '<a href="panels/email/editemail.php?ID='.$f[$i]['ID'].'">Edit</a>';
+		}else if($type == 'tbl_content'){
+			$contentList .= '<a href="panels/content/editcontent.php?ID='.$f[$i]['ID'].'">Edit</a>';
+		}else if($type == 'tbl_campaign'){
+			$contentList .= '<a href="panels/campaigns/editcampaign.php?ID='.$f[$i]['ID'].'">Edit</a>';
+		}
+		
 	}
 	$contentList .= '</td>	
 		<td>Clone</td>
@@ -163,7 +170,8 @@ fileLocation as 'FileName' FROM tbl_content as t1 LEFT JOIN tbl_user as t2 on t1
 			
 	 		//$sql .= "";
 	 		
-	 		//$sql .= "ORDER BY ID ASC";	
+	 		$sql .= " ORDER BY $orderby $dir";
+	 		
  		}	 	 
 		//echo $sql;
  		$arr = array();
@@ -195,6 +203,124 @@ fileLocation as 'FileName' FROM tbl_content as t1 LEFT JOIN tbl_user as t2 on t1
 		return $arr;
 
  	}
+ 	
+ 	
+
+public function get_email($type,$field,$word,$sort,$dir)
+ 	{
+ 	
+ 	include("../../config/DB_Connect.php");
+ 	
+ 	if($sort == NULL) {
+		$orderby = 'ID';
+		$dir = 'ASC';
+	}else {
+		$orderby = $sort;
+		$dir = $dir;
+	}
+ 		// Returns a 3-D array with the following:
+ 		// ID, Name, Description, Keywords, HTMLContentID, TextContentID, Subject, FromName, FromAddress,
+ 		// CreatedDate, CreatedByID, CreatedByName, UpdatedDate, UpdatedByID, UpdatedByName, OwnedByID, OwnedByName
+ 		
+ 		$sql = "SELECT emailID as 'ID', emailName as 'Name', emailDescription as 'Description', emailKeywords as 'Keywords', 
+ 				emailHTML as 'HTMLContentID', emailText as 'TextContentID', emailSubject as 'Subject', emailFromName as 'FromName', 
+ 				emailFromAddress as 'FromAddress', createdDate as 'CreatedDate', createdBy as 'CreatedByID', 
+ 				concat(t2.userFirstName, ' ', t2.userLastName) as 'CreatedByName', updatedDate as 'UpdatedDate', 
+				updatedBy as 'UpdatedByID', concat(t3.userFirstName, ' ', t3.userLastName) as 'UpdatedByName', 
+ 				canEdit as 'OwnedByID', concat(t4.userFirstName, ' ', t4.userLastName) as 'OwnedByName' 
+				FROM tbl_email as t1
+				LEFT JOIN tbl_user as t2 on t1.createdBy = t2.userID
+				LEFT JOIN tbl_user as t3 on t1.updatedBy = t3.userID
+				LEFT JOIN tbl_user as t4 on t1.canEdit = t4.userID ";
+		
+ 		$sql .= " ORDER BY $orderby $dir";		 	 
+
+ 		$arr = array();
+ 		$result = mysql_query($sql)
+		 		or die("Could not connect: " . mysql_error());
+
+ 		for ($i = 0; $i < mysql_num_fields($result); ++$i) {
+ 			$arr[0][$i] = mysql_field_name($result,$i);
+ 		}
+ 		
+		$i = 1;
+		while($row=mysql_fetch_array($result)){
+			if (strpos(strtolower($row[$field]),strtolower($word)) !== false) {
+			
+
+ 			for ($j = 0; $j < mysql_num_fields($result); ++$j) {
+ 					
+	 				$arr[$i][mysql_field_name($result,$j)] = $row[mysql_field_name($result,$j)];
+					}
+				++$i;
+				}
+			
+		}
+		
+		echo "You searched for ".$field." with the value of ".$word.".";
+		$this->printTable($arr,$type,$field,$word);
+		
+
+		return $arr;
+
+ 	}
+	
+ 	
+ 	public function get_campaign($type,$field,$word,$sort,$dir)
+ 	{
+ 		// Returns a 3-D array with the following:
+ 		// ID, Name, Description, Keywords, TypeID, Format, CreatedDate, CreatedByID, CreatedByName, 
+ 		// UpdatedDate, UpdatedByID, UpdatedByName, OwnedByID, OwnedByName, FileName
+ 		include("../../config/DB_Connect.php");
+ 	
+ 	if($sort == NULL) {
+		$orderby = 'ID';
+		$dir = 'ASC';
+	}else {
+		$orderby = $sort;
+		$dir = $dir;
+	}
+
+ 		
+ 		$sql = "SELECT campaignID as 'ID', campaignName as 'Name', campaignDescription as 'Description', campaignKeywords as 'Keywords', campaignStatus as 'StatusID', t3.wfStatusName as 'Status', 
+				CreatedDate as 'CreatedDate', launchDate as 'LaunchDate', createdBy as 'CreatedByID', concat(t2.userFirstName, ' ', t2.userLastName) as 'CreatedByName', canEdit
+				FROM tbl_campaigns as t1
+				LEFT JOIN tbl_user as t2 on t1.createdBy= t2.userID
+				LEFT JOIN tbl_wfStatus as t3 on t1.campaignStatus = t3.wfStatusID ";
+		
+ 		$sql .= "ORDER BY $orderby $dir";		 	 
+
+ 		$arr = array();
+ 		$result = mysql_query($sql)
+		 		or die("Could not connect: " . mysql_error());
+
+ 		for ($i = 0; $i < mysql_num_fields($result); ++$i) {
+ 			$arr[0][$i] = mysql_field_name($result,$i);
+ 		}
+ 		
+		$i = 1;
+		while($row=mysql_fetch_array($result)){
+			if (strpos(strtolower($row[$field]),strtolower($word)) !== false) {
+			
+
+ 			for ($j = 0; $j < mysql_num_fields($result); ++$j) {
+ 					
+	 				$arr[$i][mysql_field_name($result,$j)] = $row[mysql_field_name($result,$j)];
+					}
+				++$i;
+				}
+			
+		}
+		
+		echo "You searched for ".$field." with the value of ".$word.".";
+		$this->printTable($arr,$type,$field,$word);
+		
+
+		return $arr;
+
+ 	}
+
+
 
 	
 	

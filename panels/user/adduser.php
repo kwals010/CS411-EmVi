@@ -203,8 +203,8 @@ $newUser = new User();
 		// now we insert it into the database
 	  	if ($error == false){
 	 	$insert = "INSERT INTO tbl_user (userFirstName, userLastName, userEMailAddress, userPhoneNumber, userPassword, userAccountStatus, userRole)
-	 			VALUES ('".$_POST['userFirstName']."', '".$_POST['userLastName']."', '".$_POST['userEMailAddress']."', 
-	 			'".$_POST['userPhoneNumber']."', '".$_POST['password']."', '".$accountStat."', '".$role."')";
+	 			VALUES ('".mysql_real_escape_string($_POST['userFirstName'])."', '".mysql_real_escape_string($_POST['userLastName'])."', '".mysql_real_escape_string($_POST['userEMailAddress'])."', 
+	 			'".mysql_real_escape_string($_POST['userPhoneNumber'])."', '".mysql_real_escape_string($_POST['password'])."', '".$accountStat."', '".$role."')";
 	 	$add_member = mysql_query($insert) or die(mysql_error());
 	 	
 	 	$msgID = $newUser->user_add();

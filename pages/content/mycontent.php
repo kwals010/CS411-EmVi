@@ -8,7 +8,7 @@ $subNav = array(
 
 set_include_path("../");
 include_once '../../inc/essentials.php';
-include '../../../config/DB_Class.php';
+include '../../config/DB_Class.php';
 include_once 'contentclass.php';
 session_start();
 $uid = $_SESSION['ID'];
