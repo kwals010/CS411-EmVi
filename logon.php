@@ -46,7 +46,7 @@
 				{
 					$_POST['email'] = addslashes($_POST['email']);
  				}
- 			$check = mysql_query("SELECT * FROM tbl_user WHERE userEMailAddress = '".$_POST['username']."'")or die(mysql_error());
+ 			$check = mysql_query("SELECT * FROM tbl_user WHERE userEMailAddress = '".mysql_real_escape_string($_POST['username'])."'")or die(mysql_error());
 
  //Gives error if user dosen't exist
  			$check2 = mysql_num_rows($check);
@@ -91,7 +91,7 @@
 */ 
 //then redirect them to the members area 
 							$update_date = date("Y-m-d H:i:s");
-							mysql_query("UPDATE tbl_user SET lastLogonDate = '$update_date' WHERE userEMailAddress = '".$_POST['username']."'")or die(mysql_error());
+							mysql_query("UPDATE tbl_user SET lastLogonDate = '$update_date' WHERE userEMailAddress = '".mysql_real_escape_string($_POST['username'])."'")or die(mysql_error());
 
 							header("Location: member.php"); 
  						} 

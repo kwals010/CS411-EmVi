@@ -44,7 +44,7 @@ include '../../config/DB_Class.php';
  {
  		if ($user['userID'] != $uid){
  			
- 				echo "<option value =\"".$user['userID']."\">". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
+ 				echo "<option value =\"".$user['userID']."\">". $user['userLastName'] . ", " . $user['userFirstName'] ."  (".$user['userEMailAddress'].")</option>";
  			
  		}
  }

@@ -45,7 +45,7 @@ $mainNav.set("Campaigns"); // this line colors the top button main nav with the 
 
 
 </style>
-
+<h1>All Campaigns</h1>
 <?php
 
 if(!isset($_GET['orderBy'])) {

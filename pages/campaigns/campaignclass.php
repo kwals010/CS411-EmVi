@@ -1,4 +1,5 @@
 <?php
+
 //include_once 'include/config.php';
 class Campaign {
 	//Database connect

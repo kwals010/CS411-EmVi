@@ -52,7 +52,7 @@ if (!empty($_POST)) {
 			$kw = '';
 		}
 		else {
-			$kw = $_POST["keywords"];
+			$kw = mysql_real_escape_string($_POST["keywords"]);
 		}
 		//echo  "year = ".$_POST['start_year']." Month = ".$_POST['start_month']." Day = ".$_POST['start_day'];
 		//echo "Status = ". $_POST['status'];
@@ -60,7 +60,7 @@ if (!empty($_POST)) {
 		$ldate=date("Y-m-d",strtotime($ldate));
 		echo $ldate;
 		// Function to write data to the DB is public function add_content($uid,$name,$desc,$kw,$type,$loc)
-		$con->add_campaign($uid,$_POST["name"],$_POST["description"],$kw,$con->get_statusIDByName('NEW'),$ldate);
+		$con->add_campaign($uid,mysql_real_escape_string($_POST["name"]),mysql_real_escape_string($_POST["description"]),$kw,$con->get_statusIDByName('NEW'),$ldate);
 		// Redirect the landing page back to the content main page
 		header('Location: '.$siteUrl.'member.php#!/campaigns');
 		

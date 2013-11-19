@@ -19,7 +19,7 @@ if (isset($_POST['approve'])){
 	include_once '../../pages/workflow/workflowclass.php';
 	include_once '../../config/general.php';
 	$myReview = new Workflow();
-	$myReview->set_approved($_POST['campaignID'], $uid, $_POST['revComment']);
+	$myReview->set_approved(mysql_real_escape_string($_POST['campaignID']), $uid, mysql_real_escape_string($_POST['revComment']));
 	header('Location: '.$siteUrl.'member.php#!/reviewtasks');
 
 }
@@ -30,7 +30,7 @@ if (isset($_POST['reject'])){
 	include_once '../../pages/workflow/workflowclass.php';
 	include_once '../../config/general.php';
 	$myReview = new Workflow();
-	$myReview->set_reject($_POST['campaignID'], $uid, $_POST['revComment']);
+	$myReview->set_reject(mysql_real_escape_string($_POST['campaignID']), $uid, mysql_real_escape_string($_POST['revComment']));
 	header('Location: '.$siteUrl.'member.php#!/reviewtasks');
 
 }
