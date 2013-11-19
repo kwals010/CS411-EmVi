@@ -74,7 +74,7 @@ $tile[] = array("type"=>"simple","group"=>0,"x"=>0,"y"=>1,'width'=>2,'height'=>1
 
 /* GROUP 1 Campaigns*/
 
-$tile[] = array("type"=>"slide","group"=>1,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#CC0000","url"=>"campaigns/campaigns.php",
+$tile[] = array("type"=>"slide","group"=>1,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#990000","url"=>"campaigns/campaigns.php",
 	"text"=>"<h3 style='color:#FFFFFF;'>All Campaigns</h3>","img"=>"img/Campaigns_banner.jpg","imgSize"=>1,
 	"slidePercent"=>0.40,
 	"slideDir"=>"left", // can be up, down, left or right
@@ -82,7 +82,7 @@ $tile[] = array("type"=>"slide","group"=>1,"x"=>0,"y"=>0,'width'=>2,'height'=>1,
 	"labelText"=>"<div style='color:#FFFFFF;'>View</div>","labelColor"=>"#CC0000","labelPosition"=>"top",
 );
 
-$tile[] = array("type"=>"simple","group"=>1,"x"=>2,"y"=>0,'width'=>1,'height'=>1,"background"=>"#CC0000","url"=>"../panels/campaigns/addcampaign.php",
+$tile[] = array("type"=>"simple","group"=>1,"x"=>2,"y"=>0,'width'=>1,'height'=>1,"background"=>"#990000","url"=>"../panels/campaigns/addcampaign.php",
 		"title"=>"<div style='color:#FFFFFF;'>New</div>","text"=>"<div style='color:#FFFFFF;'>Create Campaign</div>");
 
 //Get all of the upcomming campaign releases
@@ -96,12 +96,12 @@ if (!$query) {
 $upcomming = array();
 $count = 0;
 while($row = mysql_fetch_assoc($query)){ 
-	array_push($upcomming , ("<table style='color:#FFFFFF; font-size:15px'><tr><td width=\"210px\">".$row['campaignName'] . "</td><td> " . date("m/d/Y", strtotime($row['launchDate']))."</td></tr>" ));
+	array_push($upcomming , ("<table style='color:#FFFFFF; font-size:15px'><tr><td class=\"None\" width=\"210px\">".$row['campaignName'] . "</td><td class=\"None\"> " . date("m/d/Y", strtotime($row['launchDate']))."</td></tr>" ));
 	if ($row = mysql_fetch_assoc($query)){
-		$upcomming[$count] = $upcomming[$count] . "<tr><td width=\"210px\">".$row['campaignName'] . "</td><td> " . date("m/d/Y", strtotime($row['launchDate'])) . "</td></tr>";
+		$upcomming[$count] = $upcomming[$count] . "<tr><td class=\"None\" width=\"210px\">".$row['campaignName'] . "</td><td class=\"None\"> " . date("m/d/Y", strtotime($row['launchDate'])) . "</td></tr>";
 
 		if ($row = mysql_fetch_assoc($query)){
-			$upcomming[$count] = $upcomming[$count] . "<tr><td width=\"210px\">".$row['campaignName'] . "</td><td> " . date("m/d/Y", strtotime($row['launchDate'])). "</td></tr></table>";
+			$upcomming[$count] = $upcomming[$count] . "<tr><td class=\"None\" width=\"210px\">".$row['campaignName'] . "</td><td class=\"None\"> " . date("m/d/Y", strtotime($row['launchDate'])). "</td></tr></table>";
 		}else{
 			$upcomming[$count] = $upcomming[$count] . "</table>";
 		}
@@ -111,7 +111,7 @@ while($row = mysql_fetch_assoc($query)){
 	$count++;
 }
 
-$tile[] = array("type"=>"scrollText","group"=>1,"x"=>0,"y"=>1,"width"=>3,"height"=>1,"background"=>"#FF0000","url"=>"external:panels/example.php",
+$tile[] = array("type"=>"scrollText","group"=>1,"x"=>0,"y"=>1,"width"=>3,"height"=>1,"background"=>"#990000","url"=>"external:panels/example.php",
 "title"=>"<div style='color:#FFFFFF; font-size:45px; font-weight:bolder'>Upcoming Events</div>","text"=>$upcomming,"scrollSpeed"=>5000);
  
 /*$tile[] = array("type"=>"slide","group"=>1,"x"=>0,"y"=>1,'width'=>2,'height'=>1,"background"=>"#00BFFF","url"=>"sidebars.php",
