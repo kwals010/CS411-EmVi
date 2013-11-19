@@ -11,10 +11,13 @@ $subNav = array(
 include("../../inc/essentials.php");
 include '../../config/DB_Class.php';
 include_once '../../pages/campaigns/campaignclass.php';
+include_once '../../pages/user/userclass.php';
 
 //include("../../inc/essentials.php");
 session_start();
 $uid = $_SESSION['ID'];
+$user = new User();
+$userRole = $user->withID($uid);
 
 ?>
 <script>
@@ -74,30 +77,34 @@ for ($i = 1; $i < count($types); ++$i) {
 		<td class="tablebody">' . htmlentities($types[$i]['CreatedByName']) . '</td>
 		<td class="tablebody">' . date("m/d/Y", strtotime($types[$i]['LaunchDate'])) . '</td>
 		<td class="tablebody">';
-	if ($types[$i]['CreatedByID'] == $uid) {
+	if ($types[$i]['CreatedByID'] == $uid || $user->userRole == 1) {
 		$contentList .= '<a href="panels/campaigns/viewcampaign.php?ID='.$types[$i]['ID'].'">View</a><br>';
 	}else{
 		$contentList .= '<a href="panels/campaigns/viewcampaign.php?ID='.$types[$i]['ID'].'">modified view for non owners and non reviewers</a><br>';
 	}
 
 	$contentList .=	'</td><td  class="tablebody">';
-	if ($types[$i]['canEdit'] == $uid) {
+	if ($types[$i]['canEdit'] == $uid || $user->userRole == 1) {
 		$contentList .= '<a href="panels/campaigns/editcampaign.php?ID='.$types[$i]['ID'].'">Edit</a>';
 	}
 	$contentList .=	'</td><td  class="tablebody">';
-	if ($types[$i]['CreatedByID'] == $uid) {
+	if ($types[$i]['CreatedByID'] == $uid || $user->userRole == 1) {
 		$contentList .= '<a href="panels/campaigns/attachcontent.php?ID='.$types[$i]['ID'].'">Attach Emails</a>';
 	}
 	$contentList .= '</td>	
-		<td class="tablebody">Clone</td>
+		<td class="tablebody"><a href="panels/campaigns/clonecampaign.php?ID='.$types[$i]['ID'].'">Clone</a></td>
 		<td class="tablebody">';
 	
 	
-		if ($types[$i]['CreatedByID'] == $uid and ($types[$i]['StatusID'] == 4 or $types[$i]['StatusID'] == 5)) {
+		if (($types[$i]['CreatedByID'] == $uid || $user->userRole == 1) and ($types[$i]['StatusID'] == 4 or $types[$i]['StatusID'] == 5)) {
 			$contentList .= '<a href="panels/campaigns/sendtocomplete.php?ID='.$types[$i]['ID'].'">Complete</a>';
-		}else{
-			$contentList .= 'Complete';
+		
 		}
+		$contentList .=	'</td><td  class="tablebody">';
+		if ($types[$i]['CreatedByID'] == $uid || $user->userRole == 1) {
+			$contentList .= '<a href="panels/workflow/wfreassign.php?ID='.$row['campaignID'].'">Reassign</a>';
+		}
+
 	
 	$contentList .= '</td></tr>';
 	}
@@ -141,6 +148,7 @@ if (strtolower($orderby) == 'LaunchDate' && strtolower($dir) == 'asc') {
 } else {
 	echo '<th class="tableheaders"><a href="member.php#!/campaigns/campaigns.php?orderBy=LaunchDate&dir=asc" style="text-decoration:none; color:white">Launch Date</th>';
 }
+echo '<th class="tableheaders"></th>';
 echo '<th class="tableheaders"></th>';
 echo '<th class="tableheaders"></th>';
 echo '<th class="tableheaders"></th>';

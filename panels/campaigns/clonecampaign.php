@@ -49,17 +49,6 @@ function validateForm()
  
 }
 
-function validateDel()
- {
- var r=confirm("Are you sure you want to delete this campaign?  This action will remove all reviewers and comments along with releasing the attached content for use by other campaigns.");
-	if (r) {
-		return true;
-	 }
-	 else {
-	   return false;
-	 } 
- 
-}
 
 </script>
 
@@ -82,32 +71,10 @@ function validateDel()
 		echo $ldate;
 
 		// Function to write data to the DB is public function edit_campaign($cid,$uid,$name,$desc,$kw,$status,$ldate)
-		$con->edit_campaign($_POST['campaignID'],$uid,$_POST["name"],$_POST["description"],$kw,$con->get_statusIDByName($_POST["status"]),$ldate);
-				
-		$reviewers = array();
-		if ($_POST['Reviewer1'] != 'none'){
-			$con->add_reviewers($_POST['campaignID'], $_POST['Reviewer1'], '1' );
-			$reviewers[0] = $_POST['Reviewer1'];
-		}
-		if ($_POST['Reviewer2'] != 'none'){
-			$con->add_reviewers($_POST['campaignID'], $_POST['Reviewer2'], '2');
-			$reviewers[1] = $_POST['Reviewer2'];
-		}
-		if ($_POST['Reviewer3'] != 'none'){
-			$con->add_reviewers($_POST['campaignID'], $_POST['Reviewer3'], '3');
-			$reviewers[2] = $_POST['Reviewer3'];
-		}
-		if ($_POST['Reviewer4'] != 'none'){
-			$con->add_reviewers($_POST['campaignID'], $_POST['Reviewer4'], '4');
-			$reviewers[3] = $_POST['Reviewer4'];
-		}
-		if ($_POST['Reviewer5'] != 'none'){
-			$con->add_reviewers($_POST['campaignID'], $_POST['Reviewer5'], '5');
-			$reviewers[4] = $_POST['Reviewer5'];
-		}
+		$con->add_campaign($uid,$_POST["name"],$_POST["description"],$kw,$con->get_statusIDByName($_POST["status"]),$ldate);
 		
-		$con->remove_reviewers($_POST['campaignID'], $reviewers);
-
+				
+		
 
 		// Redirect the landing page back to the content main page
 		if ($page == 'a'){
@@ -170,13 +137,10 @@ function validateDel()
  foreach($types as $t)
  {
  	if ($skip > 0)
- 		if ($t['wfStatusName'] == $cStatus){	
- 		echo "<option selected>". $t['wfStatusName'] ."</option>";
- 		}else{
+ 		{
  		echo "<option>". $t['wfStatusName'] ."</option>";
-
- 		}
- 	++$skip;
+}
+ 		++$skip;
  }
 ?>
 		</select>
@@ -184,138 +148,7 @@ function validateDel()
 	</tr>
 	
 	
-	<tr><td><h3>Add Reviewers</h3></td></tr>
-<tr>
-		<td valign="top">Campaign Reviewer 1:</td>
-		<td>
-		<select name="Reviewer1" >
-		<option value="none">No Selection</option>
-
-<?php 
-	//echo "Test";
-	//include_once '../../pages/user/userclass.php';
-	//echo "Test";
-	$allusers = new User();
- $list = $allusers->get_allusers();
- 
- //print_r($list);
-	$assignRev = mysql_fetch_assoc($reviewers);
- while ($user = mysql_fetch_assoc($list))
- {
- 		if ($user['userID'] != $uid){
- 			if ($assignRev['reviewerID'] == $user['userID']){
- 				echo "<option value =\"".$user['userID']."\" selected>". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
- 			}else{
- 				echo "<option value =\"".$user['userID']."\">". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
- 			}
- 		}
- }
- mysql_data_seek($list ,0);
-?>
-		</select>
-		</td>
-		
-			</tr>
-			<tr>
-		<td valign="top">Campaign Reviewer 2:</td>
-		<td>
-		<select name="Reviewer2" >
-		<option value="none">No Selection</option>
-
-<?php 
 	
-$assignRev = mysql_fetch_assoc($reviewers);
- while ($user = mysql_fetch_assoc($list))
- {
- 		if ($user['userID'] != $uid){
- 			if ($assignRev['reviewerID'] == $user['userID']){
- 				echo "<option value =\"".$user['userID']."\" selected>". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
- 			}else{
- 				echo "<option value =\"".$user['userID']."\">". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
- 			}
- 		}
- }
- mysql_data_seek($list ,0);
-?>
-		</select>
-		</td>
-		
-			</tr>
-<tr>
-		<td valign="top">Campaign Reviewer 3:</td>
-		<td>
-		<select name="Reviewer3" >
-		<option value="none">No Selection</option>
-<?php 
-	
-
- $assignRev = mysql_fetch_assoc($reviewers);
- while ($user = mysql_fetch_assoc($list))
- {
- 		if ($user['userID'] != $uid){
- 			if ($assignRev['reviewerID'] == $user['userID']){
- 				echo "<option value =\"".$user['userID']."\" selected>". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
- 			}else{
- 				echo "<option value =\"".$user['userID']."\">". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
- 			}
- 		}
- }
- mysql_data_seek($list ,0);
-?>
-		</select>
-		</td>
-		
-			</tr>
-			<tr>
-		<td valign="top">Campaign Reviewer 4:</td>
-		<td>
-		<select name="Reviewer4" >
-		<option value="none">No Selection</option>
-<?php 
-	
-
-$assignRev = mysql_fetch_assoc($reviewers);
- while ($user = mysql_fetch_assoc($list))
- {
- 		if ($user['userID'] != $uid){
- 			if ($assignRev['reviewerID'] == $user['userID']){
- 				echo "<option value =\"".$user['userID']."\" selected>". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
- 			}else{
- 				echo "<option value =\"".$user['userID']."\">". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
- 			}
- 		}
- }
- mysql_data_seek($list ,0);
-?>
-		</select>
-		</td>
-		
-			</tr>
-<tr>
-		<td valign="top">Campaign Reviewer 5:</td>
-		<td>
-		<select name="Reviewer5" >
-		<option value="none">No Selection</option>
-<?php 
-	
-
- $assignRev = mysql_fetch_assoc($reviewers);
- while ($user = mysql_fetch_assoc($list))
- {
- 		if ($user['userID'] != $uid){
- 			if ($assignRev['reviewerID'] == $user['userID']){
- 				echo "<option value =\"".$user['userID']."\" selected>". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
- 			}else{
- 				echo "<option value =\"".$user['userID']."\">". $user['userLastName'] . ", " . $user['userFirstName'] . "</option>";
- 			}
- 		}
- }
- mysql_data_seek($list ,0);
-?>
-		</select>
-		</td>
-		
-			</tr>
 
 
 	
@@ -324,23 +157,9 @@ $assignRev = mysql_fetch_assoc($reviewers);
 		<input type="hidden" name="page" value="<?php echo $_GET['page'];?>" />
 
 		<input type="hidden" name="campaignID" value="<?php echo $_GET['ID'];?>" />
-		<td><input type="submit" value="Update"></td>
+		<td><input type="submit" value="Clone"></td>
 		</tr>
 		</table>
 </form>
 
-<p>The order in which you select your reviewers will determine their order of approval.</p>
-
-
-<form name="dCampaign" method="post" enctype="multipart/form-data" onsubmit="return validateDel()" action="<?php 
-if ($_GET['page'] == 'a'){
-	echo "panels/campaigns/deletecampaign.php?ID=".$_GET['ID']."&page=".$_GET['page']; 
-}else{
-	echo "panels/campaigns/deletecampaign.php?ID=".$_GET['ID']; 
-}
-
-
-?>">
-<input name="Delete" type="submit" value="Delete this Campaign" />
-</form>
 </div>

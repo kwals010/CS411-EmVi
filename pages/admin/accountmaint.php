@@ -29,6 +29,32 @@ if (isset($_GET['msgID'])){
 <script>
 $mainNav.set("administration") // this line colors the top button main nav with the text "home"
 </script>
+<style type="text/css">
+.tableheaders {
+	width:140px;
+	font-weight: normal;
+	font-size: small;
+	color: #FAF6F6;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	background-color: #000080;
+	text-align: center;
+
+}
+.tablebody {
+	width: 110px;
+	font-weight: normal;
+	font-size: small;
+	color: #000000;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	background-color: #C0C0C0;
+	text-align: center;
+
+}
+
+
+</style>
 
 
 
@@ -37,7 +63,15 @@ $mainNav.set("administration") // this line colors the top button main nav with 
 <img alt="New_Campaign_Button" src="img/add_new_user_button.png" height="31" width="197"></a>
 
 <h2> Modify user account information</h2>
-
+<table bgcolor= #D28A1E style=" color: navy">
+		<thead>
+			<tr>
+			<th class="tableheaders">Name</th>
+			<th class="tableheaders">UserName</th>
+			<th class="tableheaders">Edit</th>
+			</tr>
+		
+		</thead>
 <?php 
 	// Connects to your Database 
 	include ("../../config/DB_Connect.php");
@@ -59,24 +93,24 @@ $mainNav.set("administration") // this line colors the top button main nav with 
 	// printing table rows
 	while($row = mysql_fetch_assoc($query)){ 
 		?>
-		<table bgcolor= #D28A1E style=" color: navy">
+		
 		<tr>
-			<td bgcolor= #3366CC style="border: medium solid #000000; min-width:100px; color:white; text-align: center; vertical-align: middle;">
+			<td class="tablebody">
 				<p><?php echo $row['userLastName'].", ".$row['userFirstName'];?></p>
 			</td>
-			<td bgcolor= #3366CC style="border: medium solid #000000; min-width:200px; color:white; text-align: center; vertical-align: middle;">
+			<td class="tablebody">
 				<?php echo $row['userEMailAddress'] ?>
 			</td>
-			<td bgcolor= #3366CC style="border: medium solid #000000; min-width:100px; color:white; text-align: center; vertical-align: middle;">
+			<td class="tablebody">
 				<a href="panels/user/useredit.php?ID=<?php echo $row['userID'] ?>">EDIT</a>
 			</td>
 		</tr>
 		
-	    </table>
+	    
 		
 <?php
 	}
 	
 	mysql_free_result($query);
 	?>
-   
+   </table>

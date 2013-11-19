@@ -10,11 +10,12 @@ $subNav = array(
 include '../../config/DB_Class.php';
 
 include_once 'campaignclass.php';
-
+include_once '../../pages/user/userclass.php';
 //include("../../inc/essentials.php");
 session_start();
 $uid = $_SESSION['ID'];
-
+$user = new User();
+$userRole = $user->withID($uid);
 ?>
 <script>
 $mainNav.set("Campaigns"); // this line colors the top button main nav with the text "home"
@@ -72,26 +73,25 @@ for ($i = 1; $i < count($types); ++$i) {
 		<td class="tablebody">' . htmlentities($types[$i]['CreatedByName']) . '</td>
 		<td class="tablebody">' . date("m/d/Y", strtotime($types[$i]['LaunchDate'])) . '</td>
 		<td class="tablebody">';
-	if ($types[$i]['CreatedByID'] == $uid) {
+	
 		$contentList .= '<a href="panels/campaigns/viewcampaign.php?ID='.$types[$i]['ID'].'">View</a><br>';
-	}
+	
 	$contentList .=	'</td><td  class="tablebody">';
-	if ($types[$i]['canEdit'] == $uid) {
+	if ($types[$i]['canEdit'] == $uid || $user->userRole == 1) {
 		$contentList .= '<a href="panels/campaigns/editcampaign.php?ID='.$types[$i]['ID'].'">Edit</a>';
 	}
 	$contentList .=	'</td><td  class="tablebody">';
-	if ($types[$i]['CreatedByID'] == $uid) {
+	if ($types[$i]['CreatedByID'] == $uid || $user->userRole == 1) {
 		$contentList .= '<a href="panels/campaigns/attachcontent.php?ID='.$types[$i]['ID'].'">Attach Emails</a>';
 	}
 	$contentList .= '</td>	
-		<td class="tablebody">Clone</td>
+		<td class="tablebody"><a href="panels/campaigns/clonecampaign.php?ID='.$types[$i]['ID'].'">Clone</a></td>
 		<td class="tablebody">';
 	
 	
-		if ($types[$i]['CreatedByID'] == $uid and ($types[$i]['StatusID'] == 4 or $types[$i]['StatusID'] == 5)) {
+		if (($types[$i]['CreatedByID'] == $uid || $user->userRole == 1) and ($types[$i]['StatusID'] == 4 or $types[$i]['StatusID'] == 5)) {
 			$contentList .= '<a href="panels/campaigns/sendtocomplete.php?ID='.$types[$i]['ID'].'">Complete</a>';
-		}else{
-			$contentList .= 'Complete';
+		
 		}
 	
 	$contentList .= '</td></tr>';
