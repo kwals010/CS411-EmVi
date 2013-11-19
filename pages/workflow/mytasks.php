@@ -90,7 +90,7 @@ $mainNav.set("Home"); // this line colors the top button main nav with the text 
 		}else{
 		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/editcampaign.php?ID=".$row['campaignID']."&page=a\">Edit</a></td>";
 		}
-		echo "<td class=\"tablebody\">Clone</td>";
+		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/clonecampaign.php?ID=".$types[$i]['ID']."\">Clone</a></td>";
 		if ($row['wfStatusName'] == "In Review"){
 		echo "<td class=\"tablebody\"><a href=\"panels/workflow/recallreview.php?ID=".$row['campaignID']."\">Recall</a><br></td>";
 		}else if($row['wfStatusName'] == "Approved"){
