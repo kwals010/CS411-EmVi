@@ -1,4 +1,4 @@
-<h1>Edit Campaign</h1>
+<h1>Clone Campaign</h1>
 <?php
 set_include_path("../");
 
@@ -19,12 +19,12 @@ session_start();
 $con = new Campaign();
 //$review = new Workflow();
 if (isset($_GET['ID'])){
-$campaign = $con->get_campaignByID(mysql_real_escape_string($_GET['ID']));
-$reviewers = $con->get_reviewers(mysql_real_escape_string($_GET['ID']));
+$campaign = $con->get_campaignByID($_GET['ID']);
+$reviewers = $con->get_reviewers($_GET['ID']);
 }
 if (isset($_POST['campaignID'])){
-$campaign = $con->get_campaignByID(mysql_real_escape_string($_POST['campaignID']));
-$reviewers = $con->get_reviewers(mysql_real_escape_string($_POST['campaignID']));
+$campaign = $con->get_campaignByID($_POST['campaignID']);
+$reviewers = $con->get_reviewers($_POST['campaignID']);
 }
 $uid = $_SESSION['ID'];
 
@@ -74,7 +74,7 @@ function validateDel()
 			$kw = '';
 		}
 		else {
-			$kw = mysql_real_escape_string($_POST["keywords"]);
+			$kw = $_POST["keywords"];
 		}
 		$page = $_POST['page'];
 		$ldate = $_POST['start_year']."-".$_POST['start_month']."-".$_POST['start_day'];
@@ -82,7 +82,7 @@ function validateDel()
 		echo $ldate;
 
 		// Function to write data to the DB is public function edit_campaign($cid,$uid,$name,$desc,$kw,$status,$ldate)
-		$con->edit_campaign(mysql_real_escape_string($_POST['campaignID']),$uid,mysql_real_escape_string($_POST["name"]),mysql_real_escape_string($_POST["description"]),$kw,$con->get_statusIDByName(mysql_real_escape_string($_POST["status"])),$ldate);
+		$con->edit_campaign($_POST['campaignID'],$uid,$_POST["name"],$_POST["description"],$kw,$con->get_statusIDByName($_POST["status"]),$ldate);
 				
 		$reviewers = array();
 		if ($_POST['Reviewer1'] != 'none'){

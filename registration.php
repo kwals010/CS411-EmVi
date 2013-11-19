@@ -188,7 +188,7 @@ $msgID = array (0,1,2,3,4);
  		//die('You did not complete all of the required fields. Please go back and complete all fields in the form.  Thank you!');
  	}
  // checks to see if usernames is an email address and if the username is in use
- 	if (!check_email_address($_POST['userEMailAddress'])){
+ 	if (!check_email_address(mysql_real_escape_string($_POST['userEMailAddress']))){
  		$msgID[1]=405; 
  		//die('A valid e-mail address was not entered.  Please enter a valid email address and resubmit.');
  	}
@@ -196,7 +196,7 @@ $msgID = array (0,1,2,3,4);
  		$_POST['userEMailAddress'] = addslashes($_POST['userEMailAddress']);
  	}
 
- $check = mysql_query("SELECT userEMailAddress FROM tbl_user WHERE userEMailAddress = '".$_POST['userEMailAddress']."'") 
+ $check = mysql_query("SELECT userEMailAddress FROM tbl_user WHERE userEMailAddress = '".mysql_real_escape_string($_POST['userEMailAddress'])."'") 
 or die(mysql_error());
  $check2 = mysql_num_rows($check);
 
@@ -207,7 +207,7 @@ or die(mysql_error());
  				}
 
  // this makes sure both passwords entered match and are of proper length and complexity
- 	if (!check_password($_POST['pass'])){
+ 	if (!check_password(mysql_real_escape_string($_POST['pass']))){
  		$msgID[3]=404; 
  		//die('Your password does ot meet the minumum requiremetns posted on the registration page.  Please resubmit.');
  	}
@@ -228,8 +228,8 @@ or die(mysql_error());
   // now we insert it into the database
   	if (($msgID[0] == 0) && ($msgID[1] == 1) && ($msgID[2] == 2) && ($msgID[3] == 3) && ($msgID[4] == 4)){
  	$insert = "INSERT INTO tbl_user (userFirstName, userLastName, userEMailAddress, userPhoneNumber, userPassword)
- 			VALUES ('".$_POST['userFirstName']."', '".$_POST['userLastName']."', '".$_POST['userEMailAddress']."', 
- 			'".$_POST['userPhoneNumber']."', '".$_POST['pass']."')";
+ 			VALUES ('".mysql_real_escape_string($_POST['userFirstName'])."', '".mysql_real_escape_string($_POST['userLastName'])."', '".mysql_real_escape_string($_POST['userEMailAddress'])."', 
+ 			'".mysql_real_escape_string($_POST['userPhoneNumber'])."', '".$_POST['pass']."')";
  	$add_member = mysql_query($insert) or die(mysql_error());
  	$msgID[0] = 700;
  	
@@ -241,7 +241,7 @@ or die(mysql_error());
 		
  	 $to = $_POST['userEMailAddress'];
  	$subject = "EmVi Registration";
- 	$txt = "Thank you! \n\nYou have successfully requested access to the EMVI tool.\n\n\n\n Your username is ".$_POST['userEMailAddress']." . \n";
+ 	$txt = "Thank you! \n\nYou have successfully requested access to the EMVI tool.\n\n\n\n Your username is ".mysql_real_escape_string($_POST['userEMailAddress'])." . \n";
  	$txt =	$txt.  "You will receive another email once your account has been approved.";
  
  	$txt = $txt. "If you experiance problems logging into the site or have questions about your account please contact\n\n".$admin['userFirstName']." ".$admin['userLastName']."\n".$admin['userEMailAddress']."\n".$admin['userPhoneNumber'].".";

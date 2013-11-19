@@ -158,7 +158,7 @@ class User
 	public function get_allusers(){
 	
 		include("../../config/DB_Connect.php");	
-		$allusers = mysql_query("SELECT `userID`,`userLastName`,`userFirstName` FROM `tbl_user` ORDER BY `userLastName`");
+		$allusers = mysql_query("SELECT `userID`,`userLastName`,`userFirstName`,`userEMailAddress` FROM `tbl_user` ORDER BY `userLastName`");
 		if (!$allusers) {    
 				die("Query to show fields from table failed userclass.php Line 156");
 		}
