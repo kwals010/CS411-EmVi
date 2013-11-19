@@ -172,15 +172,17 @@ if($bgImage!=""){
 			include ("pages/user/messageclass.php");
 			$inform = new message();
 			$inform->printMessage($_GET['msg']);
+		}else if (isset($_GET['error'])){
+			echo $_GET['error'];
 		}
 	?>
 	<div id="centerWrapper">
 	
 	
   		
-		<br><span style="color:black">If you do not have an account please 
-			click the link below to request one.</span><br>
-			<a href="registration.php">Register</a>
+		<br><span style="color:black"><h3>If you do not have an account please 
+			click the link below to request one.</h3></span><br>
+			<a href="registration.php"><h3>Register</h3></a>
 			
 	</div> 	    
 </div>
