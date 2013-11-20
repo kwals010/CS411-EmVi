@@ -5,10 +5,11 @@ $siteTitle = 'EmVi'; /* will be displayed above the url-bar / in tab / on Google
 $siteName = 'EmVi'; /* The biggest title on your homepage */
 $siteDesc ='The Competitors will be Emvious'; /* subtitle on your homepage */
 $siteTitleHome = 'Home'; // will be displayed above the url-ba / in tab / in google when the home-page is open
-$siteFooter = '© EmVi.com';
+$siteFooter = '&copy; EmVi.com';
 $currentURL = mysql_fetch_assoc(mysql_query("SELECT `configBlockCode` FROM `tbl_siteConfig` WHERE `configObject`='siteURL'"));
 $siteUrl = $currentURL['configBlockCode'];
-$filesLocation = '/var/www/emvi/content/upload/';
+$files = mysql_fetch_assoc(mysql_query("SELECT `configBlockCode` FROM `tbl_siteConfig` WHERE `configObject`='filesLocation'"));
+$filesLocation = $files['configBlockCode'];
 
 $siteMetaDesc = 'We are an ';
 $siteMetaKeywords = 'EmVi, CMS, Email, Marketing, CDN, Content, E-Mail';

@@ -19,7 +19,7 @@ $allOpenWork = mysql_query("SELECT * FROM `tbl_campaigns` WHERE `campaignStatus`
 				die("Query to show fields from table failed tiles.php Line 8");
 		}
 
-$allInReview = mysql_query("SELECT * FROM `tbl_campaigns` WHERE `campaignStatus` != 3");
+$allInReview = mysql_query("SELECT * FROM `tbl_campaigns` WHERE `campaignStatus` = 3");
 		if (!$allInReview) {    
 				die("Query to show fields from table failed tiles.php Line 8");
 		}
@@ -96,12 +96,12 @@ if (!$query) {
 $upcomming = array();
 $count = 0;
 while($row = mysql_fetch_assoc($query)){ 
-	array_push($upcomming , ("<table style='color:#FFFFFF; font-size:15px'><tr><td class=\"None\" width=\"210px\">".$row['campaignName'] . "</td><td class=\"None\"> " . date("m/d/Y", strtotime($row['launchDate']))."</td></tr>" ));
+	array_push($upcomming , ("<table style='color:#FFFFFF; font-size:15px'><tr><td class=\"None\" width=\"320px\">".$row['campaignName'] . "</td><td class=\"None\"> " . date("m/d/Y", strtotime($row['launchDate']))."</td></tr>" ));
 	if ($row = mysql_fetch_assoc($query)){
-		$upcomming[$count] = $upcomming[$count] . "<tr><td class=\"None\" width=\"210px\">".$row['campaignName'] . "</td><td class=\"None\"> " . date("m/d/Y", strtotime($row['launchDate'])) . "</td></tr>";
+		$upcomming[$count] = $upcomming[$count] . "<tr><td class=\"None\" width=\"320px\">".$row['campaignName'] . "</td><td class=\"None\"> " . date("m/d/Y", strtotime($row['launchDate'])) . "</td></tr>";
 
 		if ($row = mysql_fetch_assoc($query)){
-			$upcomming[$count] = $upcomming[$count] . "<tr><td class=\"None\" width=\"210px\">".$row['campaignName'] . "</td><td class=\"None\"> " . date("m/d/Y", strtotime($row['launchDate'])). "</td></tr></table>";
+			$upcomming[$count] = $upcomming[$count] . "<tr><td class=\"None\" width=\"320px\">".$row['campaignName'] . "</td><td class=\"None\"> " . date("m/d/Y", strtotime($row['launchDate'])). "</td></tr></table>";
 		}else{
 			$upcomming[$count] = $upcomming[$count] . "</table>";
 		}
@@ -158,7 +158,7 @@ $tile[] = array("type"=>"slide","group"=>2,"x"=>1,"y"=>1,'width'=>2,'height'=>1,
 
 /* GROUP 3 Search*/
 
-$tile[] = array("type"=>"simple","group"=>3,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#008000","url"=>"search/search.php",
+$tile[] = array("type"=>"simple","group"=>3,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#008000","url"=>"search/searchcampaign.php",
 "title"=>"<div style='color:#FFFFFF;'>Find</div>","text"=>"<div style='color:#FFFFFF;'>Search campaigns, emails or content</div>");
 
 

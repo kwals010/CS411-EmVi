@@ -28,7 +28,7 @@ $mainNav.set("Campaigns"); // this line colors the top button main nav with the 
 	color: #FAF6F6;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
-	background-color: #000080;
+	background-color: #990000;
 	text-align: center;
 
 }

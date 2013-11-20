@@ -1,32 +1,5 @@
 
 <head>
-<style type="text/css">
-.tableheaders {
-	width:140px;
-	font-weight: normal;
-	font-size: small;
-	color: #FAF6F6;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	background-color: #000080;
-	text-align: center;
-
-}
-.tablebody {
-	width: 110px;
-	font-weight: normal;
-	font-size: small;
-	color: #000000;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	background-color: #C0C0C0;
-	text-align: center;
-
-}
-
-
-</style>
-
 </head>
 
 
@@ -89,9 +62,9 @@ while ($email = mysql_fetch_assoc($emailArray)){
 	echo '<br><table align="left" cellpadding="0" cellspacing="0" width="300">
 			<tr><td align="left">HTML:</td><td align="left">Text:</td></tr>
 			<tr><td align="left">
-				<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="600"></a></td>
+				<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="400"></a></td>
 			<td align="left">
-				<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="600"></a></td></tr>
+				<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="400"></a></td></tr>
 			<tr><td align="left">Keywords: ' . $email[emailKeywords] . '</td></tr>
 			<tr><td><input name="Send Test" type="button" value="Send Test" /></td></tr>
 			</table>';

@@ -6,7 +6,7 @@
 	color: #FAF6F6;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
-	background-color: #000080;
+	background-color: #008000;
 	text-align: center;
 
 }
@@ -65,7 +65,7 @@ class Search
 	
     public function printTable($f,$type,$field,$word) {
     
-    
+    include_once '../../pages/user/userclass.php';
     
     	/*echo "<table>";
     		while ($found = mysql_fetch_assoc($f)){
@@ -82,6 +82,8 @@ class Search
 */    	
     	session_start();
 $uid = $_SESSION['ID'];
+$user = new User();
+$userRole = $user->withID($uid);
 
     	
   
@@ -106,24 +108,18 @@ for ($i = 1; $i < count($f); ++$i) {
 		$contentList .= '<a href="content/upload/'. $f[$i]['FileName'] .'" target="_blank">View</a>';
 	}
 	$contentList .=	'</td><td class="tablebody">';
-	if ($f[$i]['OwnedByID'] == $uid) {
+	if ($f[$i]['canEdit'] == $uid || $user->userRole == 1) {
 		if ($type == 'tbl_email'){
 			$contentList .= '<a href="panels/email/editemail.php?ID='.$f[$i]['ID'].'">Edit</a>';
 		}else if($type == 'tbl_content'){
 			$contentList .= '<a href="panels/content/editcontent.php?ID='.$f[$i]['ID'].'">Edit</a>';
-		}else if($type == 'tbl_campaign'){
+		}else if($type == 'tbl_campaigns'){
 			$contentList .= '<a href="panels/campaigns/editcampaign.php?ID='.$f[$i]['ID'].'">Edit</a>';
 		}
 		
 	}
 	$contentList .= '</td>	
-		<td class="tablebody">Clone</td>
-		<td class="tablebody">';
-	if ($f[$i]['OwnedByID'] == $uid) {
-		$contentList .= 'Delete';
-	}	
-	$contentList .= '</td>
-		</tr>';
+		<td class="tablebody">Clone</td></tr>';
 }
 
 
@@ -163,7 +159,6 @@ if (strtolower($orderby) == 'ownedby' && strtolower($dir) == 'asc') {
 	echo '<th class="tableheaders"><a href="member.php#!/search/searchcontent.php?Type='.$type.'&Field='.$field.'&Value='.$word.'&orderBy=OwnedByName&dir=asc" style="text-decoration:none; color:white">Locked By</td>';
 }
 echo '<th class="tableheaders"></td>';
-echo '<td style="min-width:50px;font-weight:bold"></td>';
 echo '<td style="min-width:50px;font-weight:bold"></td>';
 echo '<td style="min-width:50px;font-weight:bold"></td>';
 echo '</tr>';
