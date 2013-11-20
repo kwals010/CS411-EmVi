@@ -108,6 +108,17 @@
 		</form>			
 				
 </fieldset>
+<fieldset name="SiteURL">
+		<legend>Content URL configuration</legend>
+		<form name="URL" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+			<label id="Label1">Please enter the location of content upload folder.</label>
+			<?php $currentURL = mysql_fetch_assoc(mysql_query("SELECT `configBlockCode` FROM `tbl_siteConfig` WHERE `configObject`='filesLocation'"));?>
+			<input name="contentURL" type="text" value="<?php echo $currentURL['configBlockCode'];  ?>"/>
+			<p>(ex. /var/www/emvi/content/upload/)</p>
+			<input name="contentURL" type="submit" value="Save" />
+		</form>			
+				
+</fieldset>
 
 
 
@@ -154,6 +165,15 @@
 	
 	}
 
+	if (isset($_POST['contentURL'])){
+		
+		
+		$Administrator ="UPDATE `tbl_siteConfig` SET `configEnable`=1,`configBlockCode`='".$_POST['contentURL']."' WHERE `configObject`='filesLocation'";
+		mysql_query($Administrator )or die(mysql_error());
+		header('Location: '.$siteUrl.'member.php#!/siteconfig');
+	
+	
+	}
 
 
 ?>

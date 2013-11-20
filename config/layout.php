@@ -24,9 +24,9 @@ $spacing = 10; // space between tiles, in px
 
 /* Tilegroup settings */
 if ($user['userRole'] == 1){
-	$groupTitles = array('My Work','Campaigns','Content','Search','My Account','Help','Administration',); // titles of the tileGroups
+	$groupTitles = array('Work','Campaigns','Emails','Search','My Account','Help','Administration',); // titles of the tileGroups
 }else{
-	$groupTitles = array('My Work','Campaigns','Content','Search','My Account','Help',); // titles of the tileGroups
+	$groupTitles = array('Work','Campaigns','Emails','Search','My Account','Help',); // titles of the tileGroups
 
 }
 

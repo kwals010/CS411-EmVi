@@ -1,14 +1,14 @@
 <a rel="group0">
 	<img src="img/icons/work.png" alt="My Work"/>
-	Home
+	Work
 </a>
 <a rel="group1">
-	<img src="img/icons/campaign.png" alt="Campaign"/>
+	<img src="img/icons/content.png" alt="Campaign"/>
 	Campaigns
  </a>
 <a rel="group2">
-	<img src="img/icons/content.png" alt="Content"/>
-	 Content
+	<img src="img/icons/campaign.png" alt="Emails"/>
+	 Emails
 </a>	
 <a rel="group3">
 	<img src="img/icons/search.png" alt="Search"/>

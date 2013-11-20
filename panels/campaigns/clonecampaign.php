@@ -73,8 +73,11 @@ function validateForm()
 		// Function to write data to the DB is public function edit_campaign($cid,$uid,$name,$desc,$kw,$status,$ldate)
 		$con->add_campaign($uid,$_POST["name"],$_POST["description"],$kw,$con->get_statusIDByName($_POST["status"]),$ldate);
 		
-				
-		
+		$emailArray = $con->get_attachedEmail($_POST['campaignID']);
+		$id = mysql_insert_id();
+		while ($e = mysql_fetch_assoc($emailArray)){
+			$con->attachContent($id, $e['emailID']);	
+		}
 
 		// Redirect the landing page back to the content main page
 		if ($page == 'a'){
@@ -161,5 +164,8 @@ function validateForm()
 		</tr>
 		</table>
 </form>
-
+<h5>Note:</h5>
+<p>Cloning a campaign will make a copy of the existing campaign and attach the <br>
+same content from the source campaign to the new. You can see these attachments <br>
+in the view link</p>
 </div>

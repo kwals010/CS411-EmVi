@@ -1,9 +1,8 @@
 <?php
 $subNav = array(
-	"Search ; search/search.php ; #F98408;",
-	"Search Campaign ; search/searchCampaign.php ; #F98408;",
-	"Search Emails ; search/searchEmail.php ; #F98408;",
-	"Search Content ; search/searchContent.php ; #F98408;",
+	"Search Campaign ; search/searchCampaign.php ; #008000;",
+	"Search Emails ; search/searchEmail.php ; #008000;",
+	"Search Content ; search/searchContent.php ; #008000;",
 
 );
 
@@ -27,10 +26,8 @@ $mainNav.set("Search") // this line colors the top button main nav with the text
  		<option value="">Select a field:</option>
  		<option value="OwnedByName">Owner</option>
  		<option value="Name">Name</option>
- 		<option value="ID">ID</option>
  		<option value="Keywords">Key Word</option>
  		<option value="CreatedByName">Created By</option>
- 		<option value="UpdatedByName">Updated By</option>
  		<option value="Subject">Subject</option>
 		<option value="FromName">From Name</option>
 		<option value="FromAddress">From Address</option>

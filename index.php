@@ -127,6 +127,30 @@ require_once("inc/seo.php");
     triggerEvent("headEnd");
 	?>
     <noscript><style>#tileContainer{display:block}</style></noscript>
+    <script type="text/javascript">
+		function userNotExist(value) {
+			
+			if (value == 1){
+				var r=alert("You did not fill in a required field.");
+			}
+			if (value == 2){
+				var r=alert("That user does not exist in our database. Click the link below to register.");
+			}
+			if (value == 3){
+				var r=alert("Account has not yet been enabled. Please try again later.");
+			}
+			if (value == 4){
+				var r=alert("Your account has been locked.  Please contact the site admin for assistance.");
+			}
+			if (value == 5){
+				var r=alert("Incorrect password, please try again.");
+			}
+			
+
+		 }
+
+	</script>
+
 </head>
 <body class="full <?php echo $device?>">
 <?php
@@ -145,17 +169,20 @@ if($bgImage!=""){
 		   		<h2><?php echo $siteDesc;?></h2>
 		    </div>
 		    <form action="logon.php" method="post"> 
- 				<table border="0" align="center" style="width: 202px"> 
+ 				<table border="0" align="center" style="width: 422px"> 
  					<tr><td colspan=2 class="auto-style3"></td></tr> 
  					<tr><td style="color:black">Username:</td><td> 
  					<input type="text" name="username" maxlength="50" style="width: 128px"> 
- 					</td></tr> 
+ 					</td><td style="width: 68px"></td><td></td></tr> 
  					<tr><td style="color:black">Password:</td><td> 
  					<input type="password" name="pass" maxlength="50" style="width: 128px"> 
- 					</td></tr> 
+ 					</td><td style="width: 68px"></td><td></td></tr> 
  					<tr><td colspan="2" class="auto-style3"> 
  					<input type="submit" name="submit" value="Login"> 
- 					</td></tr> 
+ 					</td><td style="width: 68px"></td><td></td></tr> 
+ 					<tr><td colspan="4"><span style="color:black">If you do not have an account please 
+			click the link below to request one.</span><a href="registration.php">Register</a>
+</td></tr>
  				</table> 
  			</form> 
 		</div>
@@ -166,24 +193,22 @@ if($bgImage!=""){
 			
 <div id="wrapper">
 
-	<?php
+	
+	<div id="centerWrapper">
+	
+		<?php
 		
 		if (isset($_GET['msg'])){
 			include ("pages/user/messageclass.php");
 			$inform = new message();
 			$inform->printMessage($_GET['msg']);
 		}else if (isset($_GET['error'])){
-			echo $_GET['error'];
+			echo "<script>";
+			echo "userNotExist(".$_GET['error'].")";
+			echo "</script>";
+			
 		}
 	?>
-	<div id="centerWrapper">
-	
-	
-  		
-		<br><span style="color:black"><h3>If you do not have an account please 
-			click the link below to request one.</h3></span><br>
-			<a href="registration.php"><h3>Register</h3></a>
-			
 	</div> 	    
 </div>
        
