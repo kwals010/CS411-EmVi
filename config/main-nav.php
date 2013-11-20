@@ -1,6 +1,6 @@
 <a rel="group0">
 	<img src="img/icons/work.png" alt="My Work"/>
-	Home
+	Work
 </a>
 <a rel="group1">
 	<img src="img/icons/content.png" alt="Campaign"/>
