@@ -11,6 +11,11 @@ to provide access control, upload features, retrieval methods and tasking soluti
 tool.  What is here now is the current skeleton system ready for modules to be added.
 test
 
-for sendmail
+For HTML screenshots, install imagemagick:
+sudo aptitude install imagemagick wkhtmltopdf
+sudo apt-get install libicu48
+sudo apt-get install xvfb
+
+For email sending, install sendmail: 
 sudo apt-get install sendmail
 sudo sendmailconfig
