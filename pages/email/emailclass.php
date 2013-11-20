@@ -1,5 +1,5 @@
 <?php
-//include_once '../content/include/config.php';
+
 class Email {
 	
 	public $emailID;
@@ -70,12 +70,12 @@ public function get_email($sort,$dir)
 		
  	}
  	
- 	public function get_emailByID($id)
+ 	public function get_emailByID($eid)
  	{
  			
  		$sql = "SELECT *
  				FROM tbl_email
- 				WHERE emailID = $id";
+ 				WHERE emailID = $eid";
  		
  		$result = mysql_query($sql)
  			or die("Could not connect: " . mysql_error());
@@ -117,6 +117,79 @@ public function get_email($sort,$dir)
  		mysql_query($sql)
  			OR die(mysql_error());
  			
+ 	}
+ 	
+ 	
+ 	public function send_emails($eid,$addresses) {
+ 		
+ 		// Takes the emailID and an string for email address. Separate multiple addresses with a comma
+ 		$boundary = md5(date('U'));
+ 		$to = explode(",", $addresses);
+
+ 		
+ 		$sql = "SELECT *
+ 				FROM `tbl_email`
+ 				WHERE emailID = '$eid'";
+ 		
+ 		$email = mysql_fetch_assoc(mysql_query($sql))
+ 			OR die(mysql_error());
+ 		
+ 		
+ 		$subject = $email[emailSubject];
+
+ 		$headers = "From: $email[emailFromName] <$email[emailFromAddress]>\r\n".
+ 				"X-Mailer: PHP/" . phpversion() ."\r\n".
+ 				"MIME-Version: 1.0\r\n".
+ 				"Content-Type: multipart/alternative; boundary=$boundary\n".
+ 				"Content-Transfer-Encoding: 7bit\r\n";
+ 		
+ 		$f = "filesLocation";
+ 		
+ 		$sql = "SELECT *
+ 				FROM `tbl_siteConfig` 
+ 				WHERE `configObject` = '$f'";
+ 		
+ 		$settings = mysql_fetch_assoc(mysql_query($sql))
+ 			OR die(mysql_error());
+ 		
+ 		$filesLoc = $settings[configBlockCode];
+ 		
+ 		// Load the content files into variables 		
+		$sql = "SELECT *
+				FROM `tbl_content`
+				WHERE contentID = '$email[emailHTML]'";
+		
+		$html = mysql_fetch_assoc(mysql_query($sql))
+			OR die(mysql_error());
+			
+		$hcontent = file_get_contents($filesLoc . $html[fileLocation] . '.html');
+
+		$sql = "SELECT *
+				FROM `tbl_content`
+				WHERE contentID = '$email[emailText]'";
+		
+		$text = mysql_fetch_assoc(mysql_query($sql))
+			OR die(mysql_error());
+			
+ 		$tcontent = file_get_contents($filesLoc . $text[fileLocation] . '.txt');
+ 	
+ 		
+ 		$message = "Multipart Message coming up" . "\r\n\r\n".
+ 				"--".$boundary."\r\n".
+ 				"Content-Type: text/plain; charset=\"iso-8859-1\""."\r\n".
+ 				"Content-Transfer-Encoding: 7bit"."\r\n".
+ 				$tcontent."\r\n".
+ 				"--".$boundary."\r\n".
+ 				"Content-Type: text/html; charset=\"iso-8859-1\""."\r\n".
+ 				"Content-Transfer-Encoding: 7bit"."\r\n".
+ 				$hcontent."\r\n".
+ 				"--".$boundary."--";
+ 		
+ 		foreach ($to as $t) {
+ 			mail($t, $subject, $message, $headers);
+ 		}
+ 	
+ 		
  	}
  	
 	

@@ -10,3 +10,7 @@ series of approval snd modifications until it is ready for distrobution.  We nee
 to provide access control, upload features, retrieval methods and tasking solutions in this 
 tool.  What is here now is the current skeleton system ready for modules to be added.
 test
+
+for sendmail
+sudo apt-get install sendmail
+sudo sendmailconfig

@@ -140,15 +140,15 @@ if (!empty($_POST)) {
 </tr>
 <tr>
 <td>From name</td>
-<td><input type="text" name="from_name" value="<?php echo $email[emailFromName]; ?>" /></td
+<td><input type="text" name="from_name" value="<?php echo $email[emailFromName]; ?>" /></td>
 </tr>
 <tr>
 <td>From address</td>
-<td><input type="text" name="from_address" value="<?php echo $email[emailFromAddress]; ?>" /></td
+<td><input type="text" name="from_address" value="<?php echo $email[emailFromAddress]; ?>" /></td>
 </tr>
 <tr>
 <td>Subject line</td>
-<td><input type="text" name="subject" value="<?php echo $email[emailSubject]; ?>" /></td
+<td><input type="text" name="subject" value="<?php echo $email[emailSubject]; ?>" /></td>
 </tr>
 <tr>
 		<td>Select text content</td>
