@@ -124,7 +124,133 @@ if (strtolower($orderby) == 'ownedby' && strtolower($dir) == 'asc') {
 echo '<th colspan="5"></th>';
 echo '</tr>';
 echo $contentList;
-echo '</table>';
+echo '</table><br /><br />';
+
+$contentList = '';
+
+for ($i = 1; $i < count($types); ++$i) {
+	if ($uid == $types[$i]['CreatedByID']) {
+		$contentList .= '<tr><td>'. htmlentities($types[$i]['Name']) . '</td>
+		<td>' . htmlentities($types[$i]['Description']) . '</td>
+		<td>' . htmlentities($types[$i]['FromName']) . '</td>
+		<td>' . htmlentities($types[$i]['Subject']) . '</td>
+		<td>' . date("m/d/Y g:i a", strtotime($types[$i]['UpdatedDate'])) . '</td>
+		<td>' . htmlentities($types[$i]['UpdatedByName']) . '</td>
+		<td><a href="panels/email/viewemail.php?ID='. $types[$i]['ID'] .'">View</a></td>
+		<td>';
+		if ($types[$i]['OwnedByID'] == $uid) {
+			$contentList .= '<a href="panels/email/editemail.php?ID=' . $types[$i]['ID'] . '">Edit</a>';
+		}
+		$contentList .= '</td><td>
+		<a href="panels/email/cloneemail.php?ID=' . $types[$i]['ID'] . '">Clone</a></td><td>';
+		if ($types[$i]['OwnedByID'] == $uid) {
+			$contentList .= '<a href="panels/email/deleteemail.php?ID=' . $types[$i]['ID'] . '">Delete</a>';
+		}
+		$contentList .= '</td><td>
+			<a href="panels/email/previewemail.php?ID=' . $types[$i]['ID'] . '">Preview</a></td>
+		</tr>';
+	}
+}
+//DISPLAY THE CREATED BY TABLE
+echo 'With You as Creator <br />';
+echo '<table><tr>';
+if (strtolower($orderby) == 'name' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Name&dir=desc" style="text-decoration:none; color:white;">Email Name</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Name&dir=asc" style="text-decoration:none; color:white;">Email Name</th>';
+}
+if (strtolower($orderby) == 'description' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Description&dir=desc" style="text-decoration:none; color:white;">Description</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Description&dir=asc" style="text-decoration:none; color:white;">Description</th>';
+}
+if (strtolower($orderby) == 'fromname' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=FromName&dir=desc" style="text-decoration:none; color:white;">From Name</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=FromName&dir=asc" style="text-decoration:none; color:white;">From Name</th>';
+}
+if (strtolower($orderby) == 'subject' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Subject&dir=desc" style="text-decoration:none; color:white;">Subject</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Subject&dir=asc" style="text-decoration:none; color:white;">Subject</th>';
+}
+if (strtolower($orderby) == 'updatedate' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=UpdatedDate&dir=desc" style="text-decoration:none; color:white;">Last Updated</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=UpdatedDate&dir=asc" style="text-decoration:none; color:white;">Last Updated</th>';
+}
+if (strtolower($orderby) == 'ownedby' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=OwnedByName&dir=desc" style="text-decoration:none; color:white;">Locked By</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=OwnedByName&dir=asc" style="text-decoration:none; color:white;">Locked By</th>';
+}
+echo '<th colspan="5"></th>';
+echo '</tr>';
+echo $contentList;
+echo '</table><br /><br />';
+$contentList = '';
+
+for ($i = 1; $i < count($types); ++$i) {
+	if ($uid == $types[$i]['UpdatedByID']) {
+		$contentList .= '<tr><td>'. htmlentities($types[$i]['Name']) . '</td>
+		<td>' . htmlentities($types[$i]['Description']) . '</td>
+		<td>' . htmlentities($types[$i]['FromName']) . '</td>
+		<td>' . htmlentities($types[$i]['Subject']) . '</td>
+		<td>' . date("m/d/Y g:i a", strtotime($types[$i]['UpdatedDate'])) . '</td>
+		<td>' . htmlentities($types[$i]['UpdatedByName']) . '</td>
+		<td><a href="panels/email/viewemail.php?ID='. $types[$i]['ID'] .'">View</a></td>
+		<td>';
+		if ($types[$i]['OwnedByID'] == $uid) {
+			$contentList .= '<a href="panels/email/editemail.php?ID=' . $types[$i]['ID'] . '">Edit</a>';
+		}
+		$contentList .= '</td><td>
+		<a href="panels/email/cloneemail.php?ID=' . $types[$i]['ID'] . '">Clone</a></td><td>';
+		if ($types[$i]['OwnedByID'] == $uid) {
+			$contentList .= '<a href="panels/email/deleteemail.php?ID=' . $types[$i]['ID'] . '">Delete</a>';
+		}
+		$contentList .= '</td><td>
+			<a href="panels/email/previewemail.php?ID=' . $types[$i]['ID'] . '">Preview</a></td>
+		</tr>';
+	}
+}
+//DISPLAY THE UPDATED BY TABLE
+echo 'With You as Last Updated <br />';
+echo '<table><tr>';
+if (strtolower($orderby) == 'name' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Name&dir=desc" style="text-decoration:none; color:white;">Email Name</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Name&dir=asc" style="text-decoration:none; color:white;">Email Name</th>';
+}
+if (strtolower($orderby) == 'description' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Description&dir=desc" style="text-decoration:none; color:white;">Description</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Description&dir=asc" style="text-decoration:none; color:white;">Description</th>';
+}
+if (strtolower($orderby) == 'fromname' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=FromName&dir=desc" style="text-decoration:none; color:white;">From Name</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=FromName&dir=asc" style="text-decoration:none; color:white;">From Name</th>';
+}
+if (strtolower($orderby) == 'subject' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Subject&dir=desc" style="text-decoration:none; color:white;">Subject</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=Subject&dir=asc" style="text-decoration:none; color:white;">Subject</th>';
+}
+if (strtolower($orderby) == 'updatedate' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=UpdatedDate&dir=desc" style="text-decoration:none; color:white;">Last Updated</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=UpdatedDate&dir=asc" style="text-decoration:none; color:white;">Last Updated</th>';
+}
+if (strtolower($orderby) == 'ownedby' && strtolower($dir) == 'asc') {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=OwnedByName&dir=desc" style="text-decoration:none; color:white;">Locked By</th>';
+} else {
+	echo '<th><a href="member.php#!/email/email.php?orderBy=OwnedByName&dir=asc" style="text-decoration:none; color:white;">Locked By</th>';
+}
+echo '<th colspan="5"></th>';
+echo '</tr>';
+echo $contentList;
+echo '</table><br /><br />';
+
 
 ?>
 <p>
