@@ -95,6 +95,7 @@ echo 'Name: ' . $content['contentName'] . '<br>
 		</td>
 	</tr>
 </table>
+</form>
 <?php	
 	echo '<table><tr><td align="center">';
 	echo '<a href="content/upload/' . $fileloc . '.' . $ftypename . '" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $fileloc . '.';
@@ -109,4 +110,3 @@ echo 'Name: ' . $content['contentName'] . '<br>
 		
 ?>
 		
-</form>
