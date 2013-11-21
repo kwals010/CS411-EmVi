@@ -19,3 +19,7 @@ sudo apt-get install xvfb
 For email sending, install sendmail: 
 sudo apt-get install sendmail
 sudo sendmailconfig
+
+For the Rackspace CDN API
+ sudo apt-get install php5-curl
+
