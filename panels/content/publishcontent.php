@@ -99,7 +99,9 @@ else {
 
 echo 'Name: ' . $content['contentName'] . '<br>
 	 Description: ' .$content['contentDescription'].'<br>';
-
+if ($cdnprops['cdnID'] != null) {
+echo '<a href="' . $cdnprops['url'] . '" target="_blank">CDN URL</a> (Right-click to copy)<br><br>';
+}
 // PUBLISH CONTENT OPTION
 if ($cdnprops['cdnID'] == null) {
 ?>
@@ -119,7 +121,6 @@ if ($cdnprops['cdnID'] == null) {
 }
 // Conditions for delete: $uid is owner + $cid not attached to email+ $cid not attached to campaign
 else if ($uid == $content['canEdit'] && $hasEmails[emailID] == '' && $hasCampaigns == '') {
-echo '<a href="' . $cdnprops['url'] . '" target="_blank">CDN URL</a> (Right-click to copy)<br>';
 ?>
 <form name="pContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=" . $cid;?>">
 <table width="450px">
