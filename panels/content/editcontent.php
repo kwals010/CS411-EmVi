@@ -120,7 +120,7 @@ if (!empty($_POST)) {
 		echo "Moved to " . $filesLocation . $fileloc . "." . $_POST["type"] . "<br>";
 	}
 	// Function to write data to the DB is public function add_content($uid,$name,$desc,$kw,$type,$loc)
-	$con->update_content($uid,$cid,$_POST["name"],$_POST["description"],$_POST["keywords"],$con->get_contentIDByType($_POST["type"]));
+	$con->update_content($uid,$cid,mysql_real_escape_string($_POST["name"]),mysql_real_escape_string($_POST["description"]),mysql_real_escape_string($_POST["keywords"]),$con->get_contentIDByType($_POST["type"]));
 	
 	// Run conversion using imagemagick to generate thumbnail for html files
 	if ($_POST["type"] == 'html') {
