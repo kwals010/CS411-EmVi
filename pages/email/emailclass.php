@@ -119,6 +119,7 @@ public function get_email($sort,$dir)
  			
  	}
  	
+	
  	
  	public function send_emails($eid,$addresses) {
  		

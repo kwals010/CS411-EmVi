@@ -30,6 +30,8 @@ $fname = $content['fileLocation'];
 $type = $con->get_contentTypeByID($content['contentType']);
 $contentPath = 	$filesLocation . $fname . '.' . $type;
 $cdnprops = $con->get_CDNByContentID($content['contentID']);
+$hasEmails = $con->get_EmailByContentID($cid);
+$hasCampaigns = $con->get_CampaignByContentID($cid);
 
 if ($cdnprops['cdnID'] == null) {
 	echo '<h1>Publish Content</h1>';
@@ -115,7 +117,8 @@ if ($cdnprops['cdnID'] == null) {
 </form>
 <?php
 }
-else {
+// Conditions for delete: $uid is owner + $cid not attached to email+ $cid not attached to campaign
+else if ($uid == $content['canEdit'] && $hasEmails[emailID] == '' && $hasCampaigns == '') {
 echo '<a href="' . $cdnprops['url'] . '" target="_blank">CDN URL</a> (Right-click to copy)<br>';
 ?>
 <form name="pContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=" . $cid;?>">
