@@ -1,36 +1,6 @@
 
 <head>
-<style type="text/css">
-.tableheaders {
-	width:140px;
-	font-weight: normal;
-	font-size: small;
-	color: #FAF6F6;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	background-color: #000080;
-	text-align: center;
-
-}
-.tablebody {
-	width: 110px;
-	font-weight: normal;
-	font-size: small;
-	color: #000000;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	background-color: #C0C0C0;
-	text-align: center;
-
-}
-
-
-</style>
-
 </head>
-
-
-
 
 <h1>Campaign View</h1>
 <?php

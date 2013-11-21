@@ -136,11 +136,11 @@ public function get_content($sort,$dir)
  		}
  		return $arr;
  	}
- 	// Returns an array of content ID to CDN ID mappings
- 	public function get_contentToCDN()
+ 	// Returns an array of CDN values
+ 	public function get_CDN()
  	{
  		$arr = array();
- 		$result = mysql_query("SELECT * FROM tbl_contentToCDN")
+ 		$result = mysql_query("SELECT * FROM tbl_CDN")
  		or die("Could not connect: " . mysql_error());
  	
  		for ($i = 0; $i < mysql_num_fields($result); ++$i) {
@@ -192,6 +192,39 @@ public function get_content($sort,$dir)
  		mysql_query($sql)
  		OR die(mysql_error());
  		
+ 	}
+ 	
+ 	public function add_toCDN($cid, $uid, $loc)
+ 	{
+
+ 		$sql = "INSERT INTO `tbl_CDN`
+ 				(contentID, publishedBy, publishedDate, url)
+ 				VALUES ('$cid', '$uid', NOW(),'$loc')";
+ 		
+ 		mysql_query($sql)
+ 		OR die(mysql_error());
+ 		
+ 	}
+ 	
+ 	public function remove_fromCDN($cid)
+ 	{
+ 		$sql = "DELETE FROM `tbl_CDN`
+ 				WHERE contentID = '$cid'";
+ 			
+ 		mysql_query($sql)
+ 		OR die(mysql_error());
+ 	}
+ 	
+ 	public function get_CDNByContentID($cid)
+ 	{
+ 		$result = mysql_query("SELECT *
+ 				FROM `tbl_CDN`
+ 				WHERE contentID = '$cid'")
+ 		
+ 		or die("Could not connect: " . mysql_error());
+ 		
+ 		return mysql_fetch_array($result);
+
  	}
  	
  	public function lock_content($cid,$uid)
