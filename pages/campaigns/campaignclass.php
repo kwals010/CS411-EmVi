@@ -324,6 +324,12 @@ WHERE `campaignID` = ".$cid." order by `reviewOrder` asc";
 
    }
 
+  public function update_status($cid,$status){
+  		$sql = "UPDATE `tbl_campaigns` SET `campaignStatus`= ".$status." WHERE `campaignID` = ".$cid." ";
+ 		
+ 		$res = mysql_query($sql) 
+			OR die(mysql_error());
 
+  }
 }
 ?>

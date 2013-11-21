@@ -22,12 +22,23 @@ $con = new Campaign();
 $stat = $con->get_statusIDByName('Edit');
 
 if (isset($_POST['Submit'])){
-
+	$page = $_POST['page'];
 	$con->set_recallreviewStatus($campaignID, $stat);
-	header('Location: '.$siteUrl.'member.php#!/url=workflow/mytasks.php');
+	//header('Location: '.$siteUrl.'member.php#!/url=workflow/mytasks.php');
+	if ($page == 'a'){
+		header('Location: '.$siteUrl.'member.php#!/url=workflow/mytasks.php');
+		}else{
+		header('Location: '.$siteUrl.'member.php#!/campaigns');
+	}
 
 }else if (isset($_POST['Cancel'])){
-	header('Location: '.$siteUrl.'member.php#!/url=workflow/mytasks.php');
+	$page = $_POST['page'];
+	//header('Location: '.$siteUrl.'member.php#!/url=workflow/mytasks.php');
+	if ($page == 'a'){
+		header('Location: '.$siteUrl.'member.php#!/url=workflow/mytasks.php');
+		}else{
+		header('Location: '.$siteUrl.'member.php#!/campaigns');
+	}
 }
 
 
@@ -56,6 +67,8 @@ proccess.</p>
 <h5>Are you sure you want to recall this campaign?</h5>
 <form name="sendReview" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <input name="cid" type="hidden" value="<?php echo $_GET['ID']; ?>"/>
+<input type="hidden" name="page" value="<?php echo $_GET['page'];?>" />
+
 <input name="Submit" type="submit" value="Submit" />
 <input name="Cancel" type="submit" value="Cancel" />
 </form>

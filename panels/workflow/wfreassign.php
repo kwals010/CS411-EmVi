@@ -17,8 +17,13 @@ include '../../config/DB_Class.php';
 	echo "Reassigning campaign ". $_POST['campaignID'] ." to " . $_POST['assignTo'];
 	$con = new Campaign();
 	$newOwner = $con->set_NewOwner($_POST['campaignID'], $_POST['assignTo']);
-	
-	header('Location: '.$siteUrl.'member.php#!/url=workflow/mytasks.php');
+	$page = $_POST['page'];
+
+	if ($page == 'a'){
+		header('Location: '.$siteUrl.'member.php#!/url=workflow/mytasks.php');
+		}else{
+		header('Location: '.$siteUrl.'member.php#!/campaigns');
+	}
 
 }
 ?>
@@ -52,6 +57,8 @@ include '../../config/DB_Class.php';
 ?>
 		</select>
 <input name="campaignID" type="hidden" value="<?php echo $_GET['ID']; ?>"/>
+<input type="hidden" name="page" value="<?php echo $_GET['page'];?>" />
+
 <input name="Reassign" type="submit" value="Reassign" />
 </form>
 

@@ -92,14 +92,14 @@ $mainNav.set("Home"); // this line colors the top button main nav with the text 
 		}
 		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/clonecampaign.php?ID=".$types[$i]['ID']."\">Clone</a></td>";
 		if ($row['wfStatusName'] == "In Review"){
-		echo "<td class=\"tablebody\"><a href=\"panels/workflow/recallreview.php?ID=".$row['campaignID']."\">Recall</a><br></td>";
+		echo "<td class=\"tablebody\"><a href=\"panels/workflow/recallreview.php?ID=".$row['campaignID']."&page=a\">Recall</a><br></td>";
 		}else if($row['wfStatusName'] == "Approved"){
-		echo "<td class=\"tablebody\"><a href=\"panels/workflow/recallreview.php?ID=".$row['campaignID']."\">Recall</a></td>";
+		echo "<td class=\"tablebody\"><a href=\"panels/workflow/recallreview.php?ID=".$row['campaignID']."&page=a\">Recall</a></td>";
 		}else{
 		echo "<td class=\"tablebody\"><a href=\"panels/workflow/sendreview.php?ID=".$row['campaignID']."\">Send<br>for review</a></td>";
 
 		}
-		echo "<td class=\"tablebody\"><a href=\"panels/workflow/wfreassign.php?ID=".$row['campaignID']."\">Reassign</a></td>";
+		echo "<td class=\"tablebody\"><a href=\"panels/workflow/wfreassign.php?ID=".$row['campaignID']."&page=a\">Reassign</a></td>";
 		echo "</tr>";
 
 		}
