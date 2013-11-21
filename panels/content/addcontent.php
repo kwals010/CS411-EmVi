@@ -93,7 +93,7 @@ if (!empty($_POST)) {
 	}
 
 	// Function to write data to the DB is public function add_content($uid,$name,$desc,$kw,$type,$loc)
-	$con->add_content($uid,$_POST["name"],$_POST["description"],$kw,$con->get_contentIDByType($ftype),$fname);
+	$con->add_content($uid,mysql_real_escape_string($_POST["name"]),mysql_real_escape_string($_POST["description"]),mysql_real_escape_string($kw),$con->get_contentIDByType($ftype),$fname);
 	// Run conversion using imagemagick to generate thumbnail for html files
 	if ($ftype == 'html')
 	{

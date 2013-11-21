@@ -135,7 +135,7 @@ public function get_email($sort,$dir)
  			OR die(mysql_error());
  		
  		
- 		$subject = $email[emailSubject];
+ 		$subject = "[". $email[emailName] . ":HTML] " .$email[emailSubject];
 
  		$headers = "From: $email[emailFromName] <$email[emailFromAddress]>\r\n".
  				"X-Mailer: PHP/" . phpversion() ."\r\n".
@@ -184,6 +184,15 @@ public function get_email($sort,$dir)
  				"Content-Transfer-Encoding: 7bit"."\r\n".
  				$hcontent."\r\n".
  				"--".$boundary."--";
+ 		
+ 		foreach ($to as $t) {
+ 			mail($t, $subject, $message, $headers);
+ 		}
+ 		
+ 		$subject = "[". $email[emailName] . ":Text] " .$email[emailSubject];
+ 		$headers = "From: $email[emailFromName] <$email[emailFromAddress]>\r\n".
+ 				"X-Mailer: PHP/" . phpversion() ."\r\n";
+ 		$message = $tcontent;
  		
  		foreach ($to as $t) {
  			mail($t, $subject, $message, $headers);

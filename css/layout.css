@@ -1,4 +1,4 @@
-﻿/* METRO UI TEMPLATE
+/* METRO UI TEMPLATE
 /* Copyright 2012 Thomas Verelst, http://metro-webdesign.info*/
 
 /*CSS RESET*/
@@ -172,4 +172,25 @@ footer:hover{
 .sidebar-top{
 	margin: 5px 0 5px 0;
 	width:100%;
+}
+.tableheaders {
+	width:140px;
+	font-weight: normal;
+	font-size: small;
+	color: #FAF6F6;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	background-color: #000080;
+	text-align: center;
+
+}
+.tablebody {
+	width: 110px;
+	font-weight: normal;
+	font-size: small;
+	color: #000000;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	background-color: #C0C0C0;
+	text-align: center;
 }

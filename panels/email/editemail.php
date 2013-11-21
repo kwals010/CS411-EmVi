@@ -112,7 +112,7 @@ if (!empty($_POST)) {
 		$html = $email[emailHTML];
 	}
  
- $em->update_email($uid,$eid,$_POST["name"],$_POST["description"],$_POST["keywords"],$_POST["from_name"],$_POST["subject"],$_POST["from_address"],$txt,$html);
+ $em->update_email($uid,$eid,mysql_real_escape_string($_POST["name"]),mysql_real_escape_string($_POST["description"]),mysql_real_escape_string($_POST["keywords"]),mysql_real_escape_string($_POST["from_name"]),mysql_real_escape_string($_POST["subject"]),mysql_real_escape_string($_POST["from_address"]),$txt,$html);
 
  // Need to add unlock and lock functions here
  
