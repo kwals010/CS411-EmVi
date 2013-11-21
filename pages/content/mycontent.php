@@ -42,6 +42,7 @@ $types = $content->get_content($orderby,$dir);
 
 $contentList = '';
 for ($i = 1; $i < count($types); ++$i) {
+	$cdnprops = $content->get_CDNByContentID($types[$i]['ID']);
 	if ($uid == $types[$i]['OwnedByID']) {
 			$contentList .= '<tr><td class="tablebody">'. htmlentities($types[$i]['Name']) . '</td>
 			<td class="tablebody">' . htmlentities($types[$i]['Format']) . '</td>
@@ -62,9 +63,14 @@ for ($i = 1; $i < count($types); ++$i) {
 		if ($types[$i]['OwnedByID'] == $uid) {
 			$contentList .= 'Delete';
 		}	
-	$contentList .= '</td>
-		<td class="tablebody"><a href="panels/content/publishcontent.php?ID='.$types[$i]['ID'].'">Publish</a></td>
-		</tr>';
+	$contentList .= '</td>';
+	if ($cdnprops['cdnID'] > 0) {
+		$contentList .= '<td class="tablebody"><a href="panels/content/publishcontent.php?ID='.$types[$i]['ID'].'">CDN Details</a>';	
+	}
+	else {
+	$contentList .= '<td class="tablebody"><a href="panels/content/publishcontent.php?ID='.$types[$i]['ID'].'">Publish</a>';
+	}
+	$contentList .= '</td></tr>';
 		
 	}
 }
@@ -105,6 +111,7 @@ echo '</table><br /><br />';
 
 $contentList = '';
 for ($i = 1; $i < count($types); ++$i) {
+	$cdnprops = $content->get_CDNByContentID($types[$i]['ID']);
 	if ($uid == $types[$i]['CreatedByID']) {
 		$contentList .= '<tr><td class="tablebody">'. htmlentities($types[$i]['Name']) . '</td>
 			<td class="tablebody">' . htmlentities($types[$i]['Format']) . '</td>
@@ -125,9 +132,14 @@ for ($i = 1; $i < count($types); ++$i) {
 		if ($types[$i]['OwnedByID'] == $uid) {
 			$contentList .= 'Delete';
 		}
-		$contentList .= '</td>
-		<td class="tablebody"><a href="panels/content/publishcontent.php?ID='.$types[$i]['ID'].'">Publish</a></td>
-		</tr>';
+		$contentList .= '</td>';
+	if ($cdnprops['cdnID'] > 0) {
+		$contentList .= '<td class="tablebody"><a href="panels/content/publishcontent.php?ID='.$types[$i]['ID'].'">CDN Details</a>';	
+	}
+	else {
+	$contentList .= '<td class="tablebody"><a href="panels/content/publishcontent.php?ID='.$types[$i]['ID'].'">Publish</a>';
+	}
+	$contentList .= '</td></tr>';
 	}
 }
 //DISPLAY THE CREATED BY TABLE
@@ -168,6 +180,7 @@ echo '</table><br /><br />';
 
 $contentList = '';
 for ($i = 1; $i < count($types); ++$i) {
+	$cdnprops = $content->get_CDNByContentID($types[$i]['ID']);
 	if ($uid == $types[$i]['UpdatedByID']) {
 		$contentList .= '<tr><td class="tablebody">'. htmlentities($types[$i]['Name']) . '</td>
 			<td class="tablebody">' . htmlentities($types[$i]['Format']) . '</td>
@@ -188,9 +201,14 @@ for ($i = 1; $i < count($types); ++$i) {
 		if ($types[$i]['OwnedByID'] == $uid) {
 			$contentList .= 'Delete';
 		}
-		$contentList .= '</td>
-		<td class="tablebody"><a href="panels/content/publishcontent.php?ID='.$types[$i]['ID'].'">Publish</a></td>
-		</tr>';
+		$contentList .= '</td>';
+	if ($cdnprops['cdnID'] > 0) {
+		$contentList .= '<td class="tablebody"><a href="panels/content/publishcontent.php?ID='.$types[$i]['ID'].'">CDN Details</a>';	
+	}
+	else {
+	$contentList .= '<td class="tablebody"><a href="panels/content/publishcontent.php?ID='.$types[$i]['ID'].'">Publish</a>';
+	}
+	$contentList .= '</td></tr>';
 		
 	}
 }
