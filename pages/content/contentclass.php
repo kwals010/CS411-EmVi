@@ -227,6 +227,31 @@ public function get_content($sort,$dir)
 
  	}
  	
+ 	public function get_EmailByContentID($cid)
+ 	{
+ 		$result = mysql_query("SELECT *
+ 				FROM `tbl_email`
+ 				WHERE '$cid' IN
+ 				(emailHTML,emailText)")
+ 	
+ 				or die("Could not connect: " . mysql_error());
+ 	
+ 		return mysql_fetch_array($result);
+ 	
+ 	}
+ 	
+ 	public function get_CampaignByContentID($cid)
+ 	{
+ 		$result = mysql_query("SELECT *
+ 				FROM `tbl_contentToCampaigns`
+ 				WHERE contentID = '$cid'")
+ 	
+ 				or die("Could not connect: " . mysql_error());
+ 	
+ 				return mysql_fetch_array($result);
+ 	
+ 	}
+ 	
  	public function lock_content($cid,$uid)
  	{
  		// This function updates the canEdit field. The field will contain either a user id or null if it is assigned to
