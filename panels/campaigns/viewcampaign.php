@@ -1,7 +1,3 @@
-
-<head>
-</head>
-
 <h1>Campaign View</h1>
 <?php
 set_include_path("../");
@@ -21,6 +17,8 @@ include_once '../../config/general.php';
 session_start();
 $uid = $_SESSION['ID'];
 $campaignID = $_GET['ID'];
+$user = new User();
+$userAddress = $user->withID($uid);
 
 $cam = new Campaign();
 
@@ -29,8 +27,15 @@ $archiveComm = $cam->get_archiveComment($campaignID);
 
 
 
-?>
 
+?>
+<script type="text/javascript">
+function sentNotify(){
+	alert('Client preview successfully sent. Please preview in your mailbox.');
+
+}
+
+</script>
 
 
 
@@ -40,6 +45,19 @@ $archiveComm = $cam->get_archiveComment($campaignID);
 <?php
 $emailArray = $cam->get_attachedEmail($campaignID);
 $em = new Email();
+if (isset($_GET['eid'])){
+	$em->send_emails($_GET['eid'],$user->userEMailAddress);
+	echo "<script> sentNotify() </script>";
+}
+if (isset($_GET['all'])){
+	while ($email = mysql_fetch_assoc($emailArray)){
+		$eid = $email['emailID'];
+		$em->send_emails($eid,$user->userEMailAddress);
+	}
+	echo "<script> sentNotify() </script>";
+}
+mysql_data_seek($emailArray,0);
+echo "<a href=\"panels/campaigns/viewcampaign.php?ID=".$campaignID."&all=True\">Send client preview for all attached email</a>";
 while ($email = mysql_fetch_assoc($emailArray)){
 	$eid = $email['emailID'];
 	
@@ -56,21 +74,20 @@ while ($email = mysql_fetch_assoc($emailArray)){
 	$con = new Content();
 	$html = $con->get_contentByID($email[emailHTML]);
 	$text = $con->get_contentByID($email[emailText]);
-	echo '<br><table align="left" cellpadding="0" cellspacing="0" width="300">
+	echo '<br><table align="left" cellpadding="0" cellspacing="0" width="800">
 			<tr><td align="left">HTML:</td><td align="left">Text:</td></tr>
 			<tr><td align="left">
-				<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="600"></a></td>
+				<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="400"></a></td>
 			<td align="left">
-				<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="600"></a></td></tr>
+				<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="400"></a></td></tr>
 			<tr><td align="left">Keywords: ' . $email[emailKeywords] . '</td></tr>
-			<tr><td><input name="Send Test" type="button" value="Send Test" /></td></tr>
+			<tr><td><a href="panels/campaigns/viewcampaign.php?ID='.$campaignID.'&eid='.$eid.'">Send Client Preview</a></td></tr>
 			</table>';
 			
 		echo "</div>";	
 		echo "<hr />";
 }
 ?>
-
 <div style="border: medium none black; overflow: auto; width: 1200px; ">
 
 <h5>Reviewers</h5>
