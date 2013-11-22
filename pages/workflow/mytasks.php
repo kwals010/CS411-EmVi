@@ -85,22 +85,33 @@ $mainNav.set("Home"); // this line colors the top button main nav with the text 
 		echo "<td class=\"tablebody\">".$row['userFirstName']." ".$row['userLastName']."</td>";
 		echo "<td class=\"tablebody\">".$row['campaignDescription']."</td>";
 		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/viewcampaign.php?ID=".$row['campaignID']."\">View</a></td>";
-		if ($row['wfStatusName'] == "In Review" || $row['canEdit'] == 0 || $row['wfStatusName'] == "Approved"){
+		if ($row['wfStatusName'] == "In Review" || $row['canEdit'] == 0 || $row['wfStatusName'] == "Approved" || $row['wfStatusName'] == "Complete"){
 		echo "<td class=\"tablebody\"></td>";
 		}else{
 		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/editcampaign.php?ID=".$row['campaignID']."&page=a\">Edit</a></td>";
 		}
 		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/clonecampaign.php?ID=".$types[$i]['ID']."\">Clone</a></td>";
-		if ($row['wfStatusName'] == "In Review"){
-		echo "<td class=\"tablebody\"><a href=\"panels/workflow/recallreview.php?ID=".$row['campaignID']."&page=a\">Recall</a><br></td>";
-		}else if($row['wfStatusName'] == "Approved"){
-		echo "<td class=\"tablebody\"><a href=\"panels/workflow/recallreview.php?ID=".$row['campaignID']."&page=a\">Recall</a></td>";
-		}else{
-		echo "<td class=\"tablebody\"><a href=\"panels/workflow/sendreview.php?ID=".$row['campaignID']."\">Send<br>for review</a></td>";
+		echo "<td class=\"tablebody\">";
+		if ($row['wfStatusName'] == "In Review" and $row['wfStatusName'] != "Complete"){
+		echo "<a href=\"panels/workflow/recallreview.php?ID=".$row['campaignID']."&page=a\">Recall</a><br>";
+		}else if($row['wfStatusName'] == "Approved" and $row['wfStatusName'] != "Complete"){
+		echo "<a href=\"panels/workflow/recallreview.php?ID=".$row['campaignID']."&page=a\">Recall</a>";
+		}else if ($row['wfStatusName'] != "Complete"){
+		echo "<a href=\"panels/workflow/sendreview.php?ID=".$row['campaignID']."\">Send<br>for review</a>";
 
 		}
-		echo "<td class=\"tablebody\"><a href=\"panels/workflow/wfreassign.php?ID=".$row['campaignID']."&page=a\">Reassign</a></td>";
-		echo "</tr>";
+		echo "</td><td class=\"tablebody\">";
+		if ($row['wfStatusName'] == "New" || $row['wfStatusName'] == "Edit" || $row['wfStatusName'] == "In Review"){
+			echo "<a href=\"panels/workflow/wfreassign.php?ID=".$row['campaignID']."&page=a\">Reassign</a>";
+		}
+		
+		if ($row['wfStatusName'] == "Approved"){
+		echo "<a href=\"panels/campaigns/sendtocomplete.php?ID=".$row['campaignID']."\">Complete</a><br><a href=\"panels/workflow/wfreassign.php?ID=".$row['campaignID']."&page=a\">Reassign</a>";
+		}else if ($row['wfStatusName'] == "Complete"){
+		echo "<a href=\"panels/campaigns/sendtocomplete.php?ID=".$row['campaignID']."\">Campaign Details</a>";
+		}
+		
+		echo "</td></tr>";
 
 		}
 ?>
@@ -109,4 +120,5 @@ $mainNav.set("Home"); // this line colors the top button main nav with the text 
 	</tbody>
 
 </table>
+
 

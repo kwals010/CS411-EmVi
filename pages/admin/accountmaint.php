@@ -1,6 +1,5 @@
 <?php
 $subNav = array(
-	"Administration ; admin/admins.php ; #F98408;",
 	"Accounts ; admin/accountmaint.php ; #F98408;",
 	"CDN setup ; admin/cdnsetup.php ; #F98408;",
 	"Site Config ; admin/siteconfig.php ; #F98408;",

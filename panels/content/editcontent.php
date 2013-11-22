@@ -79,7 +79,7 @@ function validateForm()
 echo "<script>";
 echo "function openWin()";
 echo "{";
-echo "var myWindow = window.open(\"".$siteUrl ."pages/ckeditor.php?name=".$fileloc.".".$ftypename."\",\"_blank\",\"toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=1100, height=1000\");";
+echo "var myWindow = window.open(\"".$siteUrl ."pages/ckeditor.php?type=".$ftypename."&name=".$fileloc."\",\"_blank\",\"toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=1100, height=1000\");";
 echo "}";
 echo "</script>";
 

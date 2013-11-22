@@ -163,7 +163,7 @@ $tile[] = array("type"=>"simple","group"=>3,"x"=>0,"y"=>0,'width'=>2,'height'=>1
 
 
 /* GROUP 4 My Account*/
-$tile[] = array("type"=>"simple","group"=>4,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#800000","url"=>"user/members.php",
+$tile[] = array("type"=>"simple","group"=>4,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#800000","url"=>"user/myaccount.php",
 "title"=>"<div style='color:#FFFFFF;'>Update</div>","text"=>"<div style='color:#FFFFFF;'>Change email, name or password</div>");
 
 
@@ -201,7 +201,7 @@ $user = mysql_fetch_assoc($query);
 
 if ($user['userRole'] == 1){
 	
-$tile[] = array("type"=>"simple","group"=>6,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#008080","url"=>"admin/admins.php",
+$tile[] = array("type"=>"simple","group"=>6,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#008080","url"=>"admin/accountmaint.php",
 "title"=>"<div style='color:#FFFFFF;'>Site Maintenance</div>","text"=>"<div style='color:#FFFFFF;'>Go here to set things up!</div>");
 }
 
