@@ -1,6 +1,5 @@
 <?php
 $subNav = array(
-	"Members ; user/members.php ; #F98408;",
 	"My Account ; user/myaccount.php ; #F98408;",
 );
 
