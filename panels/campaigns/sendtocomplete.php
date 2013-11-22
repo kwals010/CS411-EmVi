@@ -28,6 +28,12 @@ if (isset($_POST['markComplete'])){
 
 //Need to cahnge the status of the campaign here.
 $cam->update_status($_GET['ID'],5);
+	if ($page == 'a'){
+		header('Location: '.$siteUrl.'member.php#!/url=workflow/mytasks.php');
+		}else{
+		header('Location: '.$siteUrl.'member.php#!/campaigns');
+
+		}
 
 }
 ?>
@@ -107,9 +113,16 @@ while ($email = mysql_fetch_assoc($emailArray)){
 ?>
 
 			</fieldset>
-			
+			<?php
+			  if ($camp['campaignStatus'] == 4){
+			?>
 			<form method="post" action="<?php echo $_SERVER['PHP_SELF'].'?ID='.$_GET['ID'];?>">
+			
 			<label id="Label1">To set the status of this campaign to complete, click below.<br></label>
 			<input name="markComplete" type="submit" value="Send to Complete" />
 			</form>
+			<?php
+			}
+			?>
+
 			

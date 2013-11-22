@@ -77,11 +77,11 @@ for ($i = 1; $i < count($types); ++$i) {
 		$contentList .= '<a href="panels/campaigns/viewcampaign.php?ID='.$types[$i]['ID'].'">View</a><br>';
 	
 	$contentList .=	'</td><td  class="tablebody">';
-	if (($types[$i]['canEdit'] == $uid || $user->userRole == 1) and $types[$i]['canEdit'] != 0 ) {
+	if (($types[$i]['canEdit'] == $uid || $user->userRole == 1) and $types[$i]['canEdit'] != 0 and $types[$i]['Status'] != 'Complete') {
 		$contentList .= '<a href="panels/campaigns/editcampaign.php?ID='.$types[$i]['ID'].'">Edit</a>';
 	}
 	$contentList .=	'</td><td  class="tablebody">';
-	if (($types[$i]['CreatedByID'] == $uid || $user->userRole == 1) and $types[$i]['canEdit'] != 0 ) {
+	if (($types[$i]['canEdit'] == $uid || $user->userRole == 1) and $types[$i]['canEdit'] != 0 and $types[$i]['Status'] != 'Complete') {
 		$contentList .= '<a href="panels/campaigns/attachcontent.php?ID='.$types[$i]['ID'].'">Attach Emails</a>';
 	}
 	$contentList .= '</td>	
@@ -89,11 +89,14 @@ for ($i = 1; $i < count($types); ++$i) {
 		<td class="tablebody">';
 	
 	
-		if (($types[$i]['CreatedByID'] == $uid || $user->userRole == 1) and ($types[$i]['StatusID'] == 4 or $types[$i]['StatusID'] == 5)) {
+		if (($types[$i]['canEdit'] == $uid || $user->userRole == 1) and $types[$i]['StatusID'] == 4 ) {
 			$contentList .= '<a href="panels/campaigns/sendtocomplete.php?ID='.$types[$i]['ID'].'">Complete</a>';
 
+		}else if($types[$i]['Status'] == 'Complete'){
+			$contentList .= '<a href="panels/campaigns/sendtocomplete.php?ID='.$types[$i]['ID'].'">Campaign Details</a>';
+
 		}
-		if ($user->userRole == 1){
+		if ($user->userRole == 1 and $types[$i]['Status'] != 'Complete'){
 			$contentList .= '<br><a href="panels/workflow/recallreview.php?ID='.$types[$i]['ID'].'">Recall</a><br>
 		<a href="panels/workflow/wfreassign.php?ID='.$types[$i]['ID'].'">Reassign</a>';
 		}
@@ -152,6 +155,7 @@ echo '</thead>';
 echo $contentList;
 echo '</tbody>';
 echo '</table>';
+
 
 ?>
 <p>
