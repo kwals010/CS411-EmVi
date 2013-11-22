@@ -111,7 +111,7 @@ while($row = mysql_fetch_assoc($query)){
 	$count++;
 }
 
-$tile[] = array("type"=>"scrollText","group"=>1,"x"=>0,"y"=>1,"width"=>3,"height"=>1,"background"=>"#990000","url"=>"external:panels/example.php",
+$tile[] = array("type"=>"scrollText","group"=>1,"x"=>0,"y"=>1,"width"=>3,"height"=>1,"background"=>"#990000","url"=>"external:panels/campaigns/upcommingevents.php",
 "title"=>"<div style='color:#FFFFFF; font-size:45px; font-weight:bolder'>Upcoming Events</div>","text"=>$upcomming,"scrollSpeed"=>5000);
  
 /*$tile[] = array("type"=>"slide","group"=>1,"x"=>0,"y"=>1,'width'=>2,'height'=>1,"background"=>"#00BFFF","url"=>"sidebars.php",
