@@ -176,6 +176,8 @@ if (!empty($_POST)) {
 
 
 <form name="aContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=" . $cid;?>">
+<fieldset name="Group1">
+				<legend>Content Properties</legend>
 <table width="450px"><tr>
 		<td>Content name:</td>
 		<td><input type="text" name="name" value="<?php echo $content['contentName'];?>" /></td>
@@ -210,29 +212,36 @@ if (!empty($_POST)) {
 	<td><textarea rows="3" cols="20" name="keywords"><?php echo $content['contentKeywords'];?></textarea>
 	</td>
 	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value="Update Content"></td>
+		</tr></table>
+	</fieldset><fieldset name="Group1">
+				<legend>Content File</legend>
 
+	<tr>
+	<td colspan="2" width="85">Warning! A file has already been attached to this content.<br>
+	Uploading a file will delete the old one and replace it<br>
+	with the new one.<br>
+	
+	</td>
+	</tr>
 	<tr>
 		<td>Upload file:</td>
 		<td><input type="file" name="file" id="file"></td>
 		</tr>
 		<tr>
 		<td></td>
-		<td><input type="submit" value="Update"></td>
+		<td><input type="submit" value="Overwrite File"></td>
 		</tr>
 			<?php if ($content['fileLocation'] != '') {?>
-	<tr>
-	<td colspan="2" width="85">Warning! A file has already been attached to this content.<br>
-	Uploading a file will delete the old one and replace it<br>
-	with the new one. To leave the file unchanged, leave the<br>file field blank.<br><br>
-	
-	</td>
-	</tr></table>
+	</table>
 	<?php }
 	
 	echo '<table><tr><td align="center">';
 	
 	if ($ftypename == 'html' || $ftypename == 'txt') {
-		echo '<form><input type="button" value="Hot Edit Content" style="background-color:#c00; color:#fff;" ONCLICK="openWin()"></form></td></tr>
+		echo 'You can also edit this file directly.<br><form><input type="button" value="Hot Edit Content" style="background-color:#c00; color:#fff;" ONCLICK="openWin()"></form></td></tr>
 		<td align="center"><a href="content/upload/' . $fileloc . '.' . $ftypename . '" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $fileloc . '.png" width="250">
 		</a>';
 	}
@@ -241,7 +250,7 @@ if (!empty($_POST)) {
 
 	}
 		
-	echo '</td></tr></table>';
+	echo '</td></tr></table></fieldset>';
 		
 ?>
 		

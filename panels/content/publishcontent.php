@@ -96,7 +96,10 @@ if ($type == 'html' || $type == 'txt') {
 else {
 	$ext = $type;
 }
-
+?>
+<fieldset name="Group1">
+<legend>Content Properties</legend>
+<?php 
 echo 'Name: ' . $content['contentName'] . '<br>
 	 Description: ' .$content['contentDescription'].'<br>';
 if ($cdnprops['cdnID'] != null) {
@@ -108,13 +111,14 @@ if ($cdnprops['cdnID'] == null) {
 	 <form name="pContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=" . $cid;?>">
 <table width="450px">
 	<tr>
-		<td><input type="hidden" name="name" value="add"></td>
-		<td><input type="submit" value="Publish"></td>
-	</tr>	
-	<tr>
 		<td colspan="2" width="85">Warning! Publishing this content will make it accessible to the world.
 		</td>
 	</tr>
+<tr>
+		<td><input type="hidden" name="name" value="add"></td>
+		<td><input type="submit" value="Publish To CDN"></td>
+	</tr>	
+
 </table>
 </form>
 <?php
@@ -125,20 +129,21 @@ else if ($uid == $content['canEdit'] && $hasEmails[emailID] == '' && $hasCampaig
 <form name="pContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=" . $cid;?>">
 <table width="450px">
 <tr>
-<td><input type="hidden" name="name" value="remove"></td>
-<td><input type="submit" value="Remove"></td>
-</tr>
-<tr>
 <td colspan="2" width="85">Warning! This will remove the content from the CDN.
 </td>
 </tr>
+<tr>
+<td><input type="hidden" name="name" value="remove"></td>
+<td><input type="submit" value="Remove"></td>
+</tr>
+
 </table>
 </form>
  <?php 
 }	
-echo '<table><tr><td align="center"><img src="' . $siteUrl . 'content/upload/' . $fname . '.' . $ext . '" width="250">
+echo '</fieldset><fieldset name="Group1"><legend>Content File</legend><table><tr><td align="center"><img src="' . $siteUrl . 'content/upload/' . $fname . '.' . $ext . '" width="250">
 		</td></tr>
-		</table>';
+		</table></fieldset>';
 
 
 

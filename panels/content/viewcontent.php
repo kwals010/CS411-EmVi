@@ -36,17 +36,18 @@ if ($type == 'html' || $type == 'txt') {
 else {
 	$ext = $type;
 }
-
+echo '<fieldset name="Group1"><legend>Content Properties</legend>';
 echo 'Name: ' . $content['contentName'] . '<br>
 	 Description: ' .$content['contentDescription'].'<br>';
-	 		
-echo '<table><tr><td align="center"><img src="' . $siteUrl . 'content/upload/' . $fname . '.' . $ext . '" width="250">
-		</td></tr>
-		</table>';
 echo 'Keywords: ' . $content['contentKeywords'].'<br>';
 
-echo '<br><a href="content/upload/' . $content['fileLocation'] . '.' . $type . '" target="_blank">View Full Size</a> (Right click to save)<br />';
-		
+echo '</fieldset><fieldset name="Group1"><legend>Content File</legend>';
+echo '<table><tr><td align="center"><img src="' . $siteUrl . 'content/upload/' . $fname . '.' . $ext . '" width="250">
+		</td></tr>
+		<tr><td align="left">
+		<a href="content/upload/' . $content['fileLocation'] . '.' . $type . '" target="_blank">View Full Size</a> (Right click to save)
+		</table>';	
+echo '</fieldset>';	
 
 
 

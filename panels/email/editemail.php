@@ -126,6 +126,7 @@ if (!empty($_POST)) {
 
 
 <form name="eEmail" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=$eid";?>">
+<fieldset name="Group1"><legend>Email Properties</legend>
 <table width="450px"><tr>
 <td>Email name</td>
 <td><input type="text" name="name" value="<?php echo $email[emailName]; ?>" /></td>
@@ -150,7 +151,9 @@ if (!empty($_POST)) {
 <td>Subject line</td>
 <td><input type="text" name="subject" value="<?php echo $email[emailSubject]; ?>" /></td>
 </tr>
-<tr>
+</table></fieldset>
+<fieldset name="Group1"><legend>Email Content</legend>
+<table width="450px"><tr>
 		<td>Select text content</td>
 		<td>
 			<select name="text_content">
@@ -177,7 +180,7 @@ if (!empty($_POST)) {
 	</tr>
 		<tr>
 		<td></td>
-		<td><input type="submit" value="Update"></td>
+		<td><input type="submit" value="Update Email"></td>
 	</tr>
 </table></form>
 <?php $html = $con->get_contentByID($email[emailHTML]);
@@ -189,5 +192,5 @@ $text = $con->get_contentByID($email[emailText]);
 		<td align="left">
 			<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="200"></a></td></tr>
 		<tr><td align="left">Keywords: ' . $email[emailKeywords] . '</td></tr>
-		</table>';
+		</table></fieldset>';
 			?>
