@@ -24,24 +24,25 @@ $eid = $_GET['ID'];
 $em = new Email();
 $email = $em->get_emailByID($eid);
 
-echo "Name: $email[emailName]<br>
-	Description: $email[emailDescription]<br>
-	From Name: $email[emailFromName]<br>
-	From Address: $email[emailFromAddress]<br>
-	Subject: $email[emailSubject]<br>";
+echo '<fieldset name="Group1"><legend>Email Properties</legend>
+	Name: ' . $email[emailName] . '<br>
+	Description: ' . $email[emailDescription]. '<br>
+	Keywords: ' . $email[emailKeywords]. '<br>
+	From Name: ' . $email[emailFromName]. '<br>
+	From Address: ' . $email[emailFromAddress]. '<br>
+	Subject: ' . $email[emailSubject]. '<br></fieldset>';
 
 // Get HTML content to display
 $con = new Content();
 $html = $con->get_contentByID($email[emailHTML]);
 $text = $con->get_contentByID($email[emailText]);
-echo '<br><table align="left" cellpadding="0" cellspacing="0" width="300">
+echo '<fieldset name="Group1"><legend>Email Content</legend><table align="left" cellpadding="0" cellspacing="0" width="300">
 		<tr><td align="left">HTML:</td><td align="left">Text:</td></tr>
 		<tr><td align="left">
 			<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="200"></a></td>
 		<td align="left">
 			<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="200"></a></td></tr>
-		<tr><td align="left">Keywords: ' . $email[emailKeywords] . '</td></tr>
-		</table>';
+			</table></fieldset>';
 
 
 

@@ -84,20 +84,26 @@ echo 'Name: ' . $content['contentName'] . '<br>
 	 Description: ' .$content['contentDescription'].'<br>';
 ?>
 <form name="aContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=" . $cid;?>">
+<fieldset name="Group1">
+				<legend>Content Properties</legend>
 <table width="450px">
-	<tr>
-		<td><input type="hidden" name="cid" value="<?php echo $cid;?>"></td>
-		<td><input type="submit" value="Delete"></td>
-	</tr>	
+<tr><td>Name:</td><td><?php echo $content['contentName'];?></td></tr>
+<tr><td>Description:</td><td><?php echo $content['contentDescription'];?></td></tr>
+<tr><td>Keywords:</td><td><?php echo $content['contentKeywords'];?></td></tr>
 	<tr>
 		<td colspan="2" width="85">Warning! Deleting content will remove all files<br>
 	associated with the content. It cannot be undone.
 		</td>
 	</tr>
-</table>
+	<tr>
+		<td><input type="hidden" name="cid" value="<?php echo $cid;?>"></td>
+		<td><input type="submit" value="Delete Content"></td>
+	</tr>
+</table></fieldset>
 </form>
 <?php	
-	echo '<table><tr><td align="center">';
+	echo '<fieldset name="Group1">
+				<legend>Content File</legend><table><tr><td align="center">';
 	echo '<a href="content/upload/' . $fileloc . '.' . $ftypename . '" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $fileloc . '.';
 	if ($ftypename == 'txt' || $ftypename == 'html') {
 		echo 'png';
@@ -106,7 +112,7 @@ echo 'Name: ' . $content['contentName'] . '<br>
 		echo $ftypename;
 	}
 	echo '" width="250"></a>';
-	echo '</td></tr></table>';
+	echo '</td></tr></table></fieldset>';
 		
 ?>
 		

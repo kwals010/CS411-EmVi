@@ -105,6 +105,8 @@ if (!empty($_POST)) {
 
 
 <form name="aContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=" . $cid;?>">
+<fieldset name="Group1">
+				<legend>Content Properties</legend>
 <table width="450px"><tr>
 		<td>Content name:</td>
 		<td><input type="text" name="name" value="<?php echo $content['contentName'];?>" /></td>
@@ -120,9 +122,10 @@ if (!empty($_POST)) {
 	</tr>
 	<tr>
 	<td></td>
-	<td><input type="submit" value="Save"></td>
+	<td><input type="submit" value="Save Copy"></td>
 	</tr>
-	</table>
+	</table></fieldset><fieldset name="Group1">
+				<legend>Content File</legend>
 <?php
 	
 	echo '<table><tr><td align="center">';
@@ -134,7 +137,7 @@ if (!empty($_POST)) {
 		echo $ftypename;
 	}
 	echo '" width="250"></a>';
-	echo '</td></tr></table>';
+	echo '</td></tr></table></fieldset>';
 		
 ?>
 		

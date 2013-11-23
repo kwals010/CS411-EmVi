@@ -47,30 +47,31 @@ if (!empty($_POST)) {
 }
 
 
-echo "Name: $email[emailName]<br>
-	Description: $email[emailDescription]<br>";
+echo '<fieldset name="Group1"><legend>Email Properties</legend>
+	Name: ' . $email[emailName] . '<br>
+	Description: ' . $email[emailDescription] . '<br>';
 ?>
 <form name="dEmail" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=" . $eid;?>">
 <table width="450px">
-<tr>
-<td><input type="hidden" name="eid" value="<?php echo $eid;?>"></td>
-<td><input type="submit" value="Delete"></td>
-</tr>
 <tr>
 <td colspan="2" width="85">Warning! Deleting email will not remove the underlying content<br>
 associated with it. All content files will remain untouched.
 </td>
 </tr>
-</table>
+<tr>
+<td><input type="hidden" name="eid" value="<?php echo $eid;?>"></td>
+<td><input type="submit" value="Delete Email"></td>
+</tr>
+</table></fieldset>
 <?php 
 // Get HTML content to display
 $con = new Content();
 $html = $con->get_contentByID($email[emailHTML]);
 $text = $con->get_contentByID($email[emailText]);
-echo '<br><table align="left" cellpadding="0" cellspacing="0" width="300">
+echo '<br><fieldset name="Group1"><legend>Email Content</legend><table align="left" cellpadding="0" cellspacing="0" width="300">
 		<tr><td align="left">HTML:</td><td align="left">Text:</td></tr>
 		<tr><td align="left">
 			<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="200"></a></td>
 		<td align="left">
 			<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="200"></a></td></tr>
-		</table>';
+		</table></field>';

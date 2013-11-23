@@ -122,6 +122,7 @@ if (!empty($_POST)) {
 
 
 <form name="aEmail" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=$eid";?>">
+<fieldset name="Group1"><legend>Email Properties</legend>
 <table width="450px"><tr>
 		<td>Email name</td>
 		<td><input type="text" name="name" value="<?php echo $email[emailName]; ?>"/></td>
@@ -148,18 +149,18 @@ if (!empty($_POST)) {
 	</tr>
 	<tr>
 		<td></td>
-		<td><input type="submit" value="Clone"></td>
+		<td><input type="submit" value="Save Copy"></td>
 	</tr>
-</table>
+</table></fieldset>
 </form>
 <?php 
 	$html = $con->get_contentByID($email[emailHTML]);
 	$text = $con->get_contentByID($email[emailText]);
-	echo '<br><table align="left" cellpadding="0" cellspacing="0" width="300">
+	echo '<fieldset name="Group1"><legend>Email Content</legend><table align="left" cellpadding="0" cellspacing="0" width="300">
 		<tr><td align="left">HTML:</td><td align="left">Text:</td></tr>
 		<tr><td align="left">
 			<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="200"></a></td>
 		<td align="left">
 			<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="200"></a></td></tr>
-		</table>';
+		</table></fieldset>';
 			?>

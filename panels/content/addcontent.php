@@ -147,7 +147,8 @@ if (!empty($_POST)) {
 		header('Location: '. $siteUrl . 'member.php#!/content');
 }
 ?>
-
+<fieldset name="Group1">
+				<legend>Content Properties</legend>
 <form name="aContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <table width="450px"><tr>
 		<td>Content name:</td>
@@ -179,14 +180,19 @@ if (!empty($_POST)) {
 	<td><textarea rows="3" cols="20" name="keywords">(comma delimited)</textarea>
 	</td>
 	</tr>
-	
+	</table></fieldset> 
+	<fieldset name="Group1">
+				<legend>Content File</legend>
+				<table width="450px">
 	<tr>
 		<td>Upload file:</td>
-		<td><input type="file" name="file" id="file"></td>
+		<td>
+		<input type="file" name="file" id="file"></td>
 		</tr>
 		<tr>
 		<td></td>
-		<td><input type="submit" value="Add"></td>
+		<td><input type="submit" value="Add Content"></td>
 		</tr>
 		</table>
-</form>  
+</form>
+</fieldset>  
