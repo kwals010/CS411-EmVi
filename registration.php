@@ -239,7 +239,59 @@ or die(mysql_error());
  	$sql =mysql_query("SELECT * FROM `tbl_user` WHERE `userID` = ".$current['configBlockCode']."")or die(mysql_error());
 		$admin = mysql_fetch_assoc($sql);
 		
- 	 $to = $_POST['userEMailAddress'];
+ 	// multiple recipients
+$to  = $_POST['userEMailAddress']; // note the comma
+$random_hash = md5(date('r', time())); 
+
+// subject
+$subject = 'EmVi Registration Confirmation';
+
+// message
+$message = '
+<html>
+<head>
+  <title>EmVi Registration Confirmation</title>
+</head>
+<body>
+<div style="background: #eee; border: 1px solid #ccc; padding: 5px 10px;">
+<p>&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<strong><span style="color: #999966; font-size: 72px;">EmVi</span></strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-size: large; color: #999966;">&nbsp;</span></p>
+</div>
+<p><img style="float: left; height: 189px; opacity: 0.9; width: 390px;" src="http://www.cs.odu.edu/~411orang/img/email-marketing.png" alt="" /></p>
+
+<p>&nbsp;</p>
+<p><span style="color: #999966;"><span style="font-size: 36px;"><strong>Hello '.$_POST['userFirstName'].',</strong></span></span></p>
+<p><span style="color: #999966;"><span style="font-size: 28px;"><strong>Welcome to EmVi and thank you for registering for our services!! We know that you will not be dissappointed with your decision to utilize EmVi for all of your campaign creation needs.</strong>&nbsp;</span></span><strong><span style="font-size: 28px;"><span style="color: #999966;">Once you receive your activation email you can login to your account anytime by going to&nbsp;</span><a href="'.$siteUrl.'"><span style="color: #999966;">'.$siteUrl.'</span></a><span style="color: #999966;">.&nbsp;</span></span></strong></p>
+<p><span style="color: #999966; font-size: x-large;">&nbsp;</span></p>
+<p><span style="font-size: xx-large;"><strong><span style="color: #999966;">Sincerely,</span></strong></span></p>
+<p><span style="font-size: xx-large;"><strong><span style="color: #999966;">EmVi Team</span></strong></span></p>
+<p><span style="color: #999966; font-size: x-large;"><strong>&nbsp;</strong></span></p>
+<div style="background: #eee; border: 1px solid #ccc; padding: 5px 10px;">
+<p style="text-align: right;"><strong><em>&nbsp;Create Flawless Campaigns with EmVi</em></strong></p>
+</div>
+</body>
+</html>
+
+';
+
+// To send HTML mail, the Content-type header must be set
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+// Additional headers
+$headers .= 'To: '.$_POST['userFirstName'].' <'.$_POST['userEMailAddress'].'>' . "\r\n";
+$headers .= 'From: EmVi Administratorr <Admin@EmVi.com>' . "\r\n";
+
+//$headers .= 'Cc: dssmwise@gmail.com' . "\r\n";
+
+// Mail it
+mail($to, $subject, $message, $headers);
+
+ 	
+ 	/* $to = $_POST['userEMailAddress'];
  	$subject = "EmVi Registration";
  	$txt = "Thank you! \n\nYou have successfully requested access to the EMVI tool.\n\n\n\n Your username is ".mysql_real_escape_string($_POST['userEMailAddress'])." . \n";
  	$txt =	$txt.  "You will receive another email once your account has been approved.";
@@ -249,7 +301,7 @@ or die(mysql_error());
  
 	mail($to,$subject,$txt,$headers);
 
- 	
+*/ 	
  	unset($_POST['userFirstName']);
  	unset($_POST['userLastName']);
  	unset($_POST['userEMailAddress']);
