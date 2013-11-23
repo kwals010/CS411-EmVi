@@ -150,7 +150,9 @@ if (!empty($_POST)) {
 <fieldset name="Group1">
 				<legend>Content Properties</legend>
 <form name="aContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'];?>">
-<table width="450px"><tr>
+<table width="450px">
+
+<tr>
 		<td>Content name:</td>
 		<td><input type="text" name="name" /></td>
 	</tr>
@@ -180,10 +182,6 @@ if (!empty($_POST)) {
 	<td><textarea rows="3" cols="20" name="keywords">(comma delimited)</textarea>
 	</td>
 	</tr>
-	</table></fieldset> 
-	<fieldset name="Group1">
-				<legend>Content File</legend>
-				<table width="450px">
 	<tr>
 		<td>Upload file:</td>
 		<td>
@@ -195,4 +193,5 @@ if (!empty($_POST)) {
 		</tr>
 		</table>
 </form>
-</fieldset>  
+</fieldset> 
+ 

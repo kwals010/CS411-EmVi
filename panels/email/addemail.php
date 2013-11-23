@@ -110,9 +110,9 @@ if (!empty($_POST)) {
 ?>
 
 
-
-<form name="aEmail" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <fieldset name="Group1"><legend>Email Properties</legend>
+<form name="aEmail" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'];?>">
+
 <table width="450px"><tr>
 		<td>Email name</td>
 		<td><input type="text" name="name" /></td>
@@ -136,10 +136,7 @@ if (!empty($_POST)) {
 		<tr>
 		<td>Subject line</td>
 		<td><input type="text" name="subject" /></td
-	</tr></table></fieldset>
-	<fieldset name="Group1"><legend>Email Content</legend>
-<table width="450px">
-	
+	</tr>	
 	<tr>
 		<td>Select text content</td>
 		<td>
@@ -170,8 +167,8 @@ if (!empty($_POST)) {
 		<td></td>
 		<td><input type="submit" value="Add Email"></td>
 	</tr>
-</table></fieldset>
-</form>
+</table>
+</form></fieldset>
 <?php 
 
 

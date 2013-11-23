@@ -124,9 +124,9 @@ if (!empty($_POST)) {
 
 ?>
 
-
-<form name="eEmail" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=$eid";?>">
 <fieldset name="Group1"><legend>Email Properties</legend>
+<form name="eEmail" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=$eid";?>">
+
 <table width="450px"><tr>
 <td>Email name</td>
 <td><input type="text" name="name" value="<?php echo $email[emailName]; ?>" /></td>
@@ -151,9 +151,7 @@ if (!empty($_POST)) {
 <td>Subject line</td>
 <td><input type="text" name="subject" value="<?php echo $email[emailSubject]; ?>" /></td>
 </tr>
-</table></fieldset>
-<fieldset name="Group1"><legend>Email Content</legend>
-<table width="450px"><tr>
+<tr>
 		<td>Select text content</td>
 		<td>
 			<select name="text_content">
@@ -182,10 +180,10 @@ if (!empty($_POST)) {
 		<td></td>
 		<td><input type="submit" value="Update Email"></td>
 	</tr>
-</table></form>
+</table></form></fieldset>
 <?php $html = $con->get_contentByID($email[emailHTML]);
 $text = $con->get_contentByID($email[emailText]);
-	echo '<br><table align="left" cellpadding="0" cellspacing="0" width="300">
+	echo '<br><fieldset name="Group1"><legend>Email Content</legend><table align="left" cellpadding="0" cellspacing="0" width="300">
 		<tr><td align="left">HTML:</td><td align="left">Text:</td></tr>
 		<tr><td align="left">
 			<a href="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.html" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $html[fileLocation] . '.png' . '" width="200"></a></td>
