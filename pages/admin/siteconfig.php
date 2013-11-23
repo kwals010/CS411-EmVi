@@ -1,7 +1,7 @@
 <?php
 	$subNav = array(
 		"Accounts ; admin/accountmaint.php ; #F98408;",
-		"CDN setup ; admin/cdnsetup.php ; #F98408;",
+		// "CDN setup ; admin/cdnsetup.php ; #F98408;",
 		"Site Config ; admin/siteconfig.php ; #F98408;",
 	
 	);
@@ -119,6 +119,24 @@
 				
 </fieldset>
 
+<fieldset name="CDNConfig">
+	<legend>CDN Credentials</legend>
+	<form name="CDNConfig" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+
+		<label id="Label1">USERNAME: </label>
+		<?php $currentURL = mysql_fetch_assoc(mysql_query("SELECT `configBlockCode` FROM `tbl_siteConfig` WHERE `configObject`='CDNUserID'"));?>
+		<input name="CDNUser" type="text" value="<?php echo $currentURL['configBlockCode'];  ?>"/>
+		
+		
+		<label id="Label1">API KEY: </label>
+		<?php $currentURL = mysql_fetch_assoc(mysql_query("SELECT `configBlockCode` FROM `tbl_siteConfig` WHERE `configObject`='CDNAPIKey'"));?>
+		<input name="CDNKey" type="text" value="<?php echo $currentURL['configBlockCode'];  ?>"/>
+		
+		
+		<br/>
+		<input name="CDNConfig" type="submit" value="Save" />
+	</form>				
+</fieldset>
 
 
 
@@ -169,6 +187,18 @@
 		
 		$Administrator ="UPDATE `tbl_siteConfig` SET `configEnable`=1,`configBlockCode`='".$_POST['contentURL']."' WHERE `configObject`='filesLocation'";
 		mysql_query($Administrator )or die(mysql_error());
+		header('Location: '.$siteUrl.'member.php#!/siteconfig');
+	
+	
+	}
+	
+	if (isset($_POST['CDNConfig'])){
+		
+		
+		$CDNUser = "UPDATE `tbl_siteConfig` SET `configEnable`=1,`configBlockCode`='".$_POST['CDNUser']."' WHERE `configObject`='CDNUserID'";
+		$CDNKey = "UPDATE `tbl_siteConfig` SET `configEnable`=1,`configBlockCode`='".$_POST['CDNKey']."' WHERE `configObject`='CDNAPIKey'";
+		mysql_query($CDNUser )or die(mysql_error());
+		mysql_query($CDNKey )or die(mysql_error());
 		header('Location: '.$siteUrl.'member.php#!/siteconfig');
 	
 	
