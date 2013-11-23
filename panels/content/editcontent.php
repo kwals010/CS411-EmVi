@@ -119,13 +119,14 @@ if (!empty($_POST)) {
 			$filesLocation . $fileloc . "." . $_POST["type"]);
 		echo "Moved to " . $filesLocation . $fileloc . "." . $_POST["type"] . "<br>";
 	}
-	// Function to write data to the DB is public function add_content($uid,$name,$desc,$kw,$type,$loc)
-	$con->update_content($uid,$cid,mysql_real_escape_string($_POST["name"]),mysql_real_escape_string($_POST["description"]),mysql_real_escape_string($_POST["keywords"]),$con->get_contentIDByType($_POST["type"]));
-	
+
 	// Run conversion using imagemagick to generate thumbnail for html files
 	if ($_POST["type"] == 'html') {
-		$convertopdf = 'xvfb-run --server-args="-screen 0, 800x600x24" wkhtmltopdf ' . $filesLocation . $fileloc . '.' . $_POST("type") . ' ' . $filesLocation . $fileloc . '.pdf';
+		echo 'HTML starting step 1<br>';
+		$convertopdf = 'xvfb-run --server-args="-screen 0, 800x600x24" wkhtmltopdf ' . $filesLocation . $fileloc . '.html' . ' ' . $filesLocation . $fileloc . '.pdf';
+		echo 'HTML step 1 done<br>';
 		$convertopng = 'convert ' . $filesLocation . $fileloc . '.pdf[0] ' . $filesLocation . $fileloc . '.png';
+		echo 'HTML step 2 done<br>';
 		exec($convertopdf,$output,$ret);
 		if ($ret) {
 			echo "Error fetching screen dump for $fileloc\n";
@@ -167,6 +168,10 @@ if (!empty($_POST)) {
 		}
 	}
 	
+	// Function to write data to the DB is public function add_content($uid,$name,$desc,$kw,$type,$loc)
+	$con->update_content($uid,$cid,mysql_real_escape_string($_POST["name"]),mysql_real_escape_string($_POST["description"]),mysql_real_escape_string($_POST["keywords"]),$con->get_contentIDByType($_POST["type"]));
+	
+	
 	// Redirect the landing page back to the content main page
 	header('Location: '. $siteUrl . 'member.php#!/content');
 	
@@ -174,10 +179,10 @@ if (!empty($_POST)) {
 ?>
 
 
-
-<form name="aContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=" . $cid;?>">
 <fieldset name="Group1">
 				<legend>Content Properties</legend>
+<form name="aContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'] . "?ID=" . $cid;?>">
+
 <table width="450px"><tr>
 		<td>Content name:</td>
 		<td><input type="text" name="name" value="<?php echo $content['contentName'];?>" /></td>
@@ -213,13 +218,6 @@ if (!empty($_POST)) {
 	</td>
 	</tr>
 	<tr>
-		<td></td>
-		<td><input type="submit" value="Update Content"></td>
-		</tr></table>
-	</fieldset><fieldset name="Group1">
-				<legend>Content File</legend>
-
-	<tr>
 	<td colspan="2" width="85">Warning! A file has already been attached to this content.<br>
 	Uploading a file will delete the old one and replace it<br>
 	with the new one.<br>
@@ -230,15 +228,19 @@ if (!empty($_POST)) {
 		<td>Upload file:</td>
 		<td><input type="file" name="file" id="file"></td>
 		</tr>
-		<tr>
+			<tr>
 		<td></td>
-		<td><input type="submit" value="Overwrite File"></td>
+		<td><input type="submit" value="Update Content"></td>
 		</tr>
 			<?php if ($content['fileLocation'] != '') {?>
 	</table>
-	<?php }
+	</form></fieldset>
 	
-	echo '<table><tr><td align="center">';
+	<?php 
+	echo '<fieldset name="Group1">
+				<legend>Content File</legend><table><tr><td align="center">
+		<table width="450px"><tr>';
+		
 	
 	if ($ftypename == 'html' || $ftypename == 'txt') {
 		echo 'You can also edit this file directly.<br><form><input type="button" value="Hot Edit Content" style="background-color:#c00; color:#fff;" ONCLICK="openWin()"></form></td></tr>
@@ -251,8 +253,8 @@ if (!empty($_POST)) {
 	}
 		
 	echo '</td></tr></table></fieldset>';
-		
+	}	
 ?>
 		
-</form>
+
 
