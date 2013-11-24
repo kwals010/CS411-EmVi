@@ -39,7 +39,6 @@ $subNav = array(
 set_include_path("../");
 include("../../inc/essentials.php");
 include '../../config/DB_Class.php';
-
 include_once 'workflowclass.php';
 session_start();
 $uid = $_SESSION['ID'];
@@ -120,5 +119,6 @@ $mainNav.set("Home"); // this line colors the top button main nav with the text 
 	</tbody>
 
 </table>
+
 
 

@@ -32,6 +32,9 @@ $pageTitles['search/searchEmail.php'] = "SearchEmail";
 $pageTitles['admin/siteconfig.php'] = "SiteConfig";
 $pageTitles['workflow/reviewtasks.php'] = "ReviewTasks";
 $pageTitles['workflow/mytasks.php'] = "MyTasks";
+$pageTitles['workflow/addedtoday.php'] = "AllTasks";
+
+
 
 
 
