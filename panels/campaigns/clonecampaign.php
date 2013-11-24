@@ -90,6 +90,8 @@ function validateForm()
 
 ?>
 <div style="overflow:auto">
+<fieldset name="Group1">
+				<legend>Clone Campaign</legend>
 <form name="aCampaign" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <table width="450px"><tr>
 		<td>Content name:</td>
@@ -160,7 +162,7 @@ function validateForm()
 		<input type="hidden" name="page" value="<?php echo $_GET['page'];?>" />
 
 		<input type="hidden" name="campaignID" value="<?php echo $_GET['ID'];?>" />
-		<td><input type="submit" value="Clone"></td>
+		<td><input type="submit" value="Save Copy"></td>
 		</tr>
 		</table>
 </form>

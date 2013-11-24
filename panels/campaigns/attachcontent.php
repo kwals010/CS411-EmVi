@@ -64,7 +64,7 @@ emails can be selected by holding down the CTRL key while selecting.</p>
 					?>
 					</select>
 					<input name="campaignID" type="hidden" value="<?php echo $_GET['ID']; ?>" />
-					<input name="Attach" type="submit" value="Attach" />
+					<input name="Attach" type="submit" value="Attach Email" />
 				</form>
 			</fieldset>
 			<fieldset name="Group1">

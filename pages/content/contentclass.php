@@ -254,32 +254,63 @@ public function get_content($sort,$dir)
  	
  	public function lock_content($cid,$uid)
  	{
- 		// This function updates the canEdit field. The field will contain either a user id or null if it is assigned to
- 		// more than one email.
- 		echo "Locking content " . $cid . "<br>";
+ 		// This function updates the canEdit field. 
+ 		// The field will contain either the user ID of a campaign owner, email owner, creator or administrator.
+ 		
+ 		// Count how many emails the content is associated with
  		$sql = "SELECT distinct count(emailID) as num
  				FROM `tbl_email`
- 				WHERE emailHTML = '$cid'";
+ 				WHERE '$cid' IN
+ 				(emailHTML,emailText)";
  		$data = mysql_query($sql)
  			OR die(mysql_error());
  		$row = mysql_fetch_assoc($data);
- 		$count = $row['num'];
- 		echo "html count is $count<br>";
+ 		$countEmail = $row['num'];
+ 		echo "Content $cid count is $countEmail<br>";
  		
- 		$count_text = "SELECT distinct count(emailID) as num
- 				FROM `tbl_email`
- 				WHERE emailText = '$cid'";
+ 		
+ 		/* TODO: Campaign count and lock
+ 		// If email count is one, check whether it's associated with a campaign
+ 		if ($countEmail == 1) {
+ 			// Get emailID
+ 			$sql = "SELECT *
+ 					FROM `tbl_email`
+ 					WHERE '$cid' IN
+ 					(emailHTML,emailText)";
+ 			$data = mysql_query($sql)
+ 				OR die(mysql_error());
+ 			$row = mysql_fetch_assoc($data);
+			$emailID = $row['emailID'];
+
+	 		$sql = "SELECT distinct count(campaignID) as num
+	 				FROM `tbl_emailToCampaigns`
+	 				WHERE emailID = $emailID";
+ 		
+	 				
+	    }
+	    
+	    */
+ 		// Get user ID of admin in case count is greater than 1
+ 		$sql = "SELECT *
+ 				FROM `tbl_siteConfig`
+ 				WHERE configObject = 'adminUserID'";
  		
  		$data = mysql_query($sql)
  			OR die(mysql_error());
  		$row = mysql_fetch_assoc($data);
- 		$count += $row['num'];
- 		echo "Total count is $count<br>";
+ 		$adminID = $row['configBlockCode'];
+ 		
+ 		
  		
  		$sql = "UPDATE `tbl_content`
  				SET canEdit = ";
  		if ($count > 1) {
- 			$sql .= 'null';
+ 			echo "Locking content " . $cid . "<br>";
+ 			
+ 			
+ 			
+ 			
+ 			$sql .= $adminID;
  		}
  		else {
  			$sql .= $uid;
