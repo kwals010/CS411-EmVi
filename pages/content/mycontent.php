@@ -76,7 +76,7 @@ for ($i = 1; $i < count($types); ++$i) {
 }
 
 //DISPLAY THE LOCKED BY TABLE
-echo 'With You As Current Owner <br />';
+echo 'With You as Current Owner <br />';
 echo '<table>';
 echo '<tr>';
 if (strtolower($orderby) == 'name' && strtolower($dir) == 'asc') {

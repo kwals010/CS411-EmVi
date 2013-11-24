@@ -68,7 +68,7 @@ for ($i = 1; $i < count($types); ++$i) {
 }
 
 //DISPLAY THE LOCKED BY TABLE
-echo 'With You As Current Owner <br />';
+echo 'With You as Current Owner <br />';
 echo '<table><tr>';
 if (strtolower($orderby) == 'name' && strtolower($dir) == 'asc') {
 	echo '<th class="tableheaders"><a href="member.php#!/email/email.php?orderBy=Name&dir=desc" style="text-decoration:none; color:white;">Email Name</th>';

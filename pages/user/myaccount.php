@@ -1,6 +1,6 @@
 <?php
 $subNav = array(
-	"My Account ; user/myaccount.php ; #F98408;",
+//	"My Account ; user/myaccount.php ; #F98408;",
 );
 
 set_include_path("../../");
