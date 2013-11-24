@@ -1,0 +1,14 @@
+﻿body {
+    margin: 10px;
+    background-color:#FF9933;
+}
+
+#leftcolumn{
+    float: left;
+    width: 250px;
+    background-color:#FF9933;
+
+}
+#rightcolumn{
+   color: black;
+   background-color: #FF9933;
