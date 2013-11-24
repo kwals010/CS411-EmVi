@@ -39,6 +39,7 @@ $subNav = array(
 set_include_path("../");
 include("../../inc/essentials.php");
 include '../../config/DB_Class.php';
+
 include_once 'workflowclass.php';
 session_start();
 $uid = $_SESSION['ID'];
@@ -89,7 +90,7 @@ $mainNav.set("Home"); // this line colors the top button main nav with the text 
 		}else{
 		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/editcampaign.php?ID=".$row['campaignID']."&page=a\">Edit</a></td>";
 		}
-		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/clonecampaign.php?ID=".$types[$i]['ID']."\">Clone</a></td>";
+		echo "<td class=\"tablebody\"><a href=\"panels/campaigns/clonecampaign.php?ID=".$row['campaignID']."\">Clone</a></td>";
 		echo "<td class=\"tablebody\">";
 		if ($row['wfStatusName'] == "In Review" and $row['wfStatusName'] != "Complete"){
 		echo "<a href=\"panels/workflow/recallreview.php?ID=".$row['campaignID']."&page=a\">Recall</a><br>";
@@ -119,6 +120,5 @@ $mainNav.set("Home"); // this line colors the top button main nav with the text 
 	</tbody>
 
 </table>
-
 
 

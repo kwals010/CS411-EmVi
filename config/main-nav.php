@@ -36,7 +36,7 @@ $user = mysql_fetch_assoc($query);
 
 if ($user['userRole'] == 1){
 	echo "<a rel=\"group6\">";
-		echo "<img src=\"img/icons/AdminIcon.jpg\" alt=\"Administration\"/>";
+		echo "<img src=\"img/icons/AdminIcon.png\" alt=\"Administration\"/>";
 		echo "Administration";
 	echo "</a>";
 } 

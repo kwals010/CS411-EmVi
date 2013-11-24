@@ -74,16 +74,16 @@ $tile[] = array("type"=>"simple","group"=>0,"x"=>0,"y"=>1,'width'=>2,'height'=>1
 
 /* GROUP 1 Campaigns*/
 
-$tile[] = array("type"=>"slide","group"=>1,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#990000","url"=>"campaigns/campaigns.php",
+$tile[] = array("type"=>"slide","group"=>1,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#BD0114","url"=>"campaigns/campaigns.php",
 	"text"=>"<h3 style='color:#FFFFFF;'>All Campaigns</h3>","img"=>"img/Campaigns_banner.jpg","imgSize"=>1,
 	"slidePercent"=>0.40,
 	"slideDir"=>"left", // can be up, down, left or right
 	"doSlideText"=>true,"doSlideLabel"=>true,
-	"labelText"=>"<div style='color:#FFFFFF;'>View</div>","labelColor"=>"#CC0000","labelPosition"=>"top",
+	"labelText"=>"<div style='color:#FFFFFF;'>View</div>","labelColor"=>"#BD0114","labelPosition"=>"top",
 );
 
 $tile[] = array("type"=>"simple","group"=>1,"x"=>2,"y"=>0,'width'=>1,'height'=>1,"background"=>"#990000","url"=>"../panels/campaigns/addcampaign.php",
-		"title"=>"<div style='color:#FFFFFF;'>New</div>","text"=>"<div style='color:#FFFFFF;'>Create Campaign</div>");
+		"title"=>"<div style='color:#FFFFFF;'>Create New Campaign</div>","text"=>"<div style='color:#FFFFFF;'></div>");
 
 //Get all of the upcomming campaign releases
 
@@ -133,26 +133,26 @@ $tile[] = array("type"=>"flip","group"=>1,"x"=>2,"y"=>1,'width'=>1,'height'=>1,"
 */	
 /* GROUP 2 Content*/
 
-$tile[] = array("type"=>"slide","group"=>2,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#990099","url"=>"email/email.php",
-		"text"=>"<h3 style='color:#FFFFFF;'>All Email</h3>","img"=>"img/email-marketing.jpg","imgSize"=>1,
+$tile[] = array("type"=>"slide","group"=>2,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#7033BE","url"=>"email/email.php",
+		"text"=>"<h3 style='color:#FFFFFF;'>All <br> Email</h3>","img"=>"img/email-marketing.jpg","imgSize"=>1,
 		"slidePercent"=>0.40,
 		"slideDir"=>"left", // can be up, down, left or right
-		"doSlideText"=>false,"doSlideLabel"=>false,
-		"labelText"=>"<div style='color:#FFFFFF;'>View</div>","labelColor"=>"#990099","labelPosition"=>"top");
+		"doSlideText"=>true,"doSlideLabel"=>true,
+		"labelText"=>"<div style='color:#FFFFFF;'>View</div>","labelColor"=>"#7033BE","labelPosition"=>"top");
 
-$tile[] = array("type"=>"simple","group"=>2,"x"=>2,"y"=>0,'width'=>1,'height'=>1,"background"=>"#990099","url"=>"../panels/email/addemail.php",
-		"title"=>"<div style='color:#FFFFFF;'>New</div>","text"=>"<div style='color:#FFFFFF;'>Create Email</div>");
+$tile[] = array("type"=>"simple","group"=>2,"x"=>2,"y"=>0,'width'=>1,'height'=>1,"background"=>"#553183","url"=>"../panels/email/addemail.php",
+		"title"=>"<div style='color:#FFFFFF;'>Create New <br> Email</div>","text"=>"<div style='color:#FFFFFF;'></div>");
 
-$tile[] = array("type"=>"simple","group"=>2,"x"=>0,"y"=>1,'width'=>1,'height'=>1,"background"=>"#336699","url"=>"../panels/content/addcontent.php",
-		"title"=>"<div style='color:#FFFFFF;'>New</div>","text"=>"<div style='color:#FFFFFF;'>Create Content</div>");
+$tile[] = array("type"=>"simple","group"=>2,"x"=>0,"y"=>1,'width'=>1,'height'=>1,"background"=>"#282E6B","url"=>"../panels/content/addcontent.php",
+		"title"=>"<div style='color:#FFFFFF;'>Create New Content</div>","text"=>"<div style='color:#FFFFFF;'></div>");
 
 
-$tile[] = array("type"=>"slide","group"=>2,"x"=>1,"y"=>1,'width'=>2,'height'=>1,"background"=>"#336699","url"=>"content/content.php",
+$tile[] = array("type"=>"slide","group"=>2,"x"=>1,"y"=>1,'width'=>2,'height'=>1,"background"=>"#0017AC","url"=>"content/content.php",
 		"text"=>"<h3 style='color:#FFFFFF;'>All Content</h3>","img"=>"img/New_Content.jpg","imgSize"=>1,
 		"slidePercent"=>0.40,
 		"slideDir"=>"left", // can be up, down, left or right
-		"doSlideText"=>false,"doSlideLabel"=>false,
-		"labelText"=>"<div style='color:#FFFFFF;'>View</div>","labelColor"=>"#336699","labelPosition"=>"top");
+		"doSlideText"=>true,"doSlideLabel"=>true,
+		"labelText"=>"<div style='color:#FFFFFF;'>View</div>","labelColor"=>"#0017AC","labelPosition"=>"top");
 
 
 
