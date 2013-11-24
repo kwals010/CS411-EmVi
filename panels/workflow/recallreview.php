@@ -44,10 +44,14 @@ if (isset($_POST['Submit'])){
 
 $reviewers = $con->get_reviewers($campaignID);
 ?>
-<p>Recalling the campaign will set it back in edit mode and stop the review 
+<fieldset name="Group1">
+				<legend>Recall Campaign</legend>
+<p>Recalling the campaign will set it back in edit mode and<br>
+   stop the review 
 proccess.</p>
 
-<h5>Your selected reviewers that will lose sight of this campaign are:</h5>
+<h5>Your selected reviewers who will lose<br>
+    sight of this campaign are:</h5>
 <table>
 	<tbody class="tablebody">
 		
@@ -64,11 +68,13 @@ proccess.</p>
 		</tbody>
 	</table>
 	
-<h5>Are you sure you want to recall this campaign?</h5>
+<h5>Are you sure you want to recall this<br>
+    campaign?</h5>
 <form name="sendReview" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <input name="cid" type="hidden" value="<?php echo $_GET['ID']; ?>"/>
 <input type="hidden" name="page" value="<?php echo $_GET['page'];?>" />
 
-<input name="Submit" type="submit" value="Submit" />
+<input name="Submit" type="submit" value="Recall Campaign" />
 <input name="Cancel" type="submit" value="Cancel" />
 </form>
+</fieldset>

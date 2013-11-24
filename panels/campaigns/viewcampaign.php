@@ -31,7 +31,7 @@ $archiveComm = $cam->get_archiveComment($campaignID);
 ?>
 <script type="text/javascript">
 function sentNotify(){
-	alert('Client preview successfully sent. Please preview in your mailbox.');
+	alert('Preview successfully sent. Please preview in your mailbox.');
 
 }
 
@@ -40,8 +40,8 @@ function sentNotify(){
 
 
 
-
-<h5>Attached Emails</h5>
+<fieldset name="Group1">
+				<legend>Attached Emails</legend>
 <?php
 $emailArray = $cam->get_attachedEmail($campaignID);
 $em = new Email();
@@ -57,7 +57,7 @@ if (isset($_GET['all'])){
 	echo "<script> sentNotify() </script>";
 }
 mysql_data_seek($emailArray,0);
-echo "<a href=\"panels/campaigns/viewcampaign.php?ID=".$campaignID."&all=True\">Send client preview for all attached email</a>";
+echo "<a href=\"panels/campaigns/viewcampaign.php?ID=".$campaignID."&all=True\">Send preview for all attached email to ".$user->userEMailAddress."</a><br>";
 while ($email = mysql_fetch_assoc($emailArray)){
 	$eid = $email['emailID'];
 	
@@ -81,16 +81,18 @@ while ($email = mysql_fetch_assoc($emailArray)){
 			<td align="left">
 				<a href="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.txt" target="_blank"><img src="' . $siteUrl . 'content/upload/' . $text[fileLocation] . '.png' . '" width="400"></a></td></tr>
 			<tr><td align="left">Keywords: ' . $email[emailKeywords] . '</td></tr>
-			<tr><td><a href="panels/campaigns/viewcampaign.php?ID='.$campaignID.'&eid='.$eid.'">Send Client Preview</a></td></tr>
+			<tr><td><br><a href=\"panels/campaigns/viewcampaign.php?ID='.$campaignID.'&all=True\">Send preview for all attached email to '.$user->userEMailAddress.'</a>
+				</td></tr>
 			</table>';
 			
 		echo "</div>";	
 		echo "<hr />";
 }
 ?>
-<div style="border: medium none black; overflow: auto; width: 1200px; ">
+</fieldset>
 
-<h5>Reviewers</h5>
+<fieldset name="Group1">
+				<legend>Reviewers</legend>
 <?php
 $reviewers = $cam->get_reviewers($campaignID);
 ?>
@@ -191,4 +193,4 @@ $reviewers = $cam->get_reviewers($campaignID);
 		</tbody>
 	</table>
 
-</div>
+</fieldset>

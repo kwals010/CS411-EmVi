@@ -96,8 +96,6 @@ function validateForm()
 
 // This section handles the page submission and the saving of data to the database
 if (!empty($_POST)) {
- echo "Hello World!";
- 
  
  echo $_POST["name"] . "<br>" . $_POST["description"] . "<br>" . $_POST["keywords"] . "<br>";
  

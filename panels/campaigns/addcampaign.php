@@ -66,7 +66,7 @@ if (!empty($_POST)) {
 		
 }
 ?>
-
+<fieldset name="Group1"><legend>Campaign Properties</legend>
 <form name="aContent" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <table width="450px"><tr>
 		<td>Campaign name:</td>
@@ -107,7 +107,7 @@ if (!empty($_POST)) {
 		<td><input type="submit" value="Add"></td>
 		</tr>
 		</table>
-</form>
+</form></fieldset>
 
 
 

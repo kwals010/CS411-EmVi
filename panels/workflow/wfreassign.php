@@ -29,7 +29,9 @@ include '../../config/DB_Class.php';
 ?>
 
 
-
+<fieldset name="Group1">
+				<legend>Reassign Campaign</legend>
+				<p>This action will assign a new owner to the campaign.</p>
 <h5>Select a new owner</h5>
 <form name="reassign" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <select name="assignTo" >
@@ -62,6 +64,5 @@ include '../../config/DB_Class.php';
 <input name="Reassign" type="submit" value="Reassign" />
 </form>
 
+</fieldset>
 
-
-<p>Uae this page to reassign a campaign to a new owner.</p>

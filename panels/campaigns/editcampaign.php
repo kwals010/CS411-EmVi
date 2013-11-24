@@ -121,6 +121,7 @@ function validateDel()
 ?>
 <div style="overflow:auto">
 <form name="aCampaign" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF'];?>">
+<fieldset name="Group1"><legend>Campaign Properties</legend>
 <table width="450px"><tr>
 		<td>Content name:</td>
 		<td><input type="text" name="name" value="<?php echo $campaign['campaignName'];?>" /></td>
@@ -182,9 +183,22 @@ function validateDel()
 		</select>
 		</td>
 	</tr>
+	<tr>
+		<td></td>
+
+		<td><input type="submit" value="Update Campaign"></td>
+		</tr>
+	
+	</table></fieldset>
+	<fieldset name="Group1"><legend>Reviewers</legend>
+	<table>
+
+	
+	<tr><td colspan="2">The order in which you select your reviewers will determine their order of approval.</td>
+	</tr>
 	
 	
-	<tr><td><h3>Add Reviewers</h3></td></tr>
+	
 <tr>
 		<td valign="top">Campaign Reviewer 1:</td>
 		<td>
@@ -320,16 +334,16 @@ $assignRev = mysql_fetch_assoc($reviewers);
 
 	
 		<tr>
-		<td></td>
-		<input type="hidden" name="page" value="<?php echo $_GET['page'];?>" />
+		<td><input type="hidden" name="page" value="<?php echo $_GET['page'];?>" />
 
-		<input type="hidden" name="campaignID" value="<?php echo $_GET['ID'];?>" />
-		<td><input type="submit" value="Update"></td>
+		<input type="hidden" name="campaignID" value="<?php echo $_GET['ID'];?>" /></td>
+
+		<td><input type="submit" value="Add Reviewers"></td>
 		</tr>
-		</table>
+		</table></fieldset>
 </form>
 
-<p>The order in which you select your reviewers will determine their order of approval.</p>
+
 
 
 <form name="dCampaign" method="post" enctype="multipart/form-data" onsubmit="return validateDel()" action="<?php 

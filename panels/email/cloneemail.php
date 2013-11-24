@@ -104,16 +104,16 @@ if (!empty($_POST)) {
 	$efname = $_POST["from_name"];
 	$efaddr= $_POST["from_address"];
 	$esubj = $_POST["subject"];
-	$etxt = $_POST["text_content"];
-	$ehtml = $_POST["html_content"];
+	$etxt = $email[emailText];
+	$ehtml = $email[emailHTML];
 	
-	// Function that will update the canEdit field on the content
-	//$con->lock_content($ehtml, $uid);
-	//$con->lock_content($etxt, $uid);
+
 	// Function to write data to the DB is public function add_email($uid,$name,$desc,$kw,$fname,$subj,$faddress,$txt,$html)
 	$em->add_email($uid, mysql_real_escape_string($ename), mysql_real_escape_string($edesc), mysql_real_escape_string($kw), mysql_real_escape_string($efname), mysql_real_escape_string($esubj), $efaddr, $email[emailText], $email[emailHTML]);
 	//echo $etxt . ' ' . $ehtml . '<br>';	
-		
+	// Function that will update the canEdit field on the content
+	$con->lock_content($etxt,$uid);
+	$con->lock_content($ehtml,$uid);		
 	// Redirect the landing page back to the content main page
 	header('Location: '. $siteUrl . 'member.php#!/email');
 }
