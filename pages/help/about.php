@@ -54,7 +54,6 @@ body {
 <ul>
 <li>87% of email users check their personal email accounts at least once daily.</li>
 <li>Consumers report that about 2/3 of the email they received were marketing (non-SPAM) messages.</li>
-<li>Consumers report that about 2/3 of the email they received were marketing (non-SPAM) messages.</li>
 <li>30% of non-business email engagement time is devoted to commercial email.</li>
 <li>Consumers overwhelmingly prefer email for commercial communications over any other mode.</li>
 <li>43% of Internet-enabled phone owners use their phone to check email 4+ times/day. Email is the most wide-spread online mobile activity.</li><br></ul>
@@ -67,6 +66,8 @@ body {
 <li>Uploads images to Content Delivery Network and automatically replaces the image url in the HTML.</li>
 <h2>Approval System</h2>
 <li> Provides a customizable approval system that allows campaigns to have multiple stages of approval.</li>
+<h2>Preview Email</h2>
+<li>Provide images of the rendered email campgaign in the different email clients and browsers.</li>
 
 <h2>Contact Us</h2>
 <li>email: EmViTeam@yahoo.com</li>
@@ -76,9 +77,10 @@ body {
 </div>
 <div id="footer">
    Copyright &copy; 2013 EmVi Team Orange<br/>
-    Last Updated on 11/23/13
+    Last Updated on 11/24/13
    </div>
 </div>
 </div>
  </body>
  </html>
+ 
