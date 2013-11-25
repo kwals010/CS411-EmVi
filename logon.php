@@ -102,19 +102,25 @@
 							$_SESSION['loggedout'] = 'no';
 							$_SESSION['LVL'] = $info['userRole'];
 							$_SESSION['ID'] = $info['userID']; 
+							
  
 // if login is ok then we add a cookie 
 							$_POST['username'] = stripslashes($_POST['username']); 
-							$hour = time() + 3600;
+							$hour = time() + 900;
 							$_SESSION['ID_my_site'] =  $_POST['username'];
 							$_SESSION['Key_my_site'] = $_POST['pass'];
-							/*setcookie(ID_my_site, $_POST['username'], $hour); 
+							
+           					
+							setcookie(ID_my_site, $_POST['username'], $hour); 
 							setcookie(Key_my_site, $_POST['pass'], $hour);	 
-*/ 
+
 //then redirect them to the members area 
 							$update_date = date("Y-m-d H:i:s");
 							mysql_query("UPDATE tbl_user SET lastLogonDate = '$update_date' WHERE userEMailAddress = '".mysql_real_escape_string($_POST['username'])."'")or die(mysql_error());
 							$_SESSION['lAttempts'] = 0;
+							$_COOKIE['lAttempts'] = 0;
+
+
 
 							header("Location: member.php"); 
  						} 
