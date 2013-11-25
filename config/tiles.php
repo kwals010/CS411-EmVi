@@ -158,13 +158,21 @@ $tile[] = array("type"=>"slide","group"=>2,"x"=>1,"y"=>1,'width'=>2,'height'=>1,
 
 /* GROUP 3 Search*/
 
-$tile[] = array("type"=>"simple","group"=>3,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#008000","url"=>"search/searchcampaign.php",
-"title"=>"<div style='color:#FFFFFF;'>Find</div>","text"=>"<div style='color:#FFFFFF;'>Search campaigns, emails or content</div>");
+$tile[] = array("type"=>"slide","group"=>3,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#008000","url"=>"search/searchcampaign.php",
+		"text"=>"<h3 style='color:#FFFFFF;'>Search <br> All Content</h3>","img"=>"img/Search_banner.jpg","imgSize"=>1,
+		"slidePercent"=>0.40,
+		"slideDir"=>"left", // can be up, down, left or right
+		"doSlideText"=>true,"doSlideLabel"=>true,
+		"labelText"=>"<div style='color:#FFFFFF;'>View</div>","labelColor"=>"#008000","labelPosition"=>"top");
 
 
 /* GROUP 4 My Account*/
-$tile[] = array("type"=>"simple","group"=>4,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#800000","url"=>"user/myaccount.php",
-"title"=>"<div style='color:#FFFFFF;'>Update</div>","text"=>"<div style='color:#FFFFFF;'>Change email, name or password</div>");
+$tile[] = array("type"=>"slide","group"=>4,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#9F050C","url"=>"user/myaccount.php",
+		"text"=>"<h3 style='color:#FFFFFF;'>Email Name Password</h3>","img"=>"img/Account_banner.jpg","imgSize"=>1,
+		"slidePercent"=>0.37,
+		"slideDir"=>"left", // can be up, down, left or right
+		"doSlideText"=>true,"doSlideLabel"=>true,
+		"labelText"=>"<div style='color:#FFFFFF;'>View</div>","labelColor"=>"#9F050C","labelPosition"=>"top");
 
 
 /* GROUP 5 Help*/
@@ -201,9 +209,13 @@ $user = mysql_fetch_assoc($query);
 
 if ($user['userRole'] == 1){
 	
-$tile[] = array("type"=>"simple","group"=>6,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#008080","url"=>"admin/accountmaint.php",
-"title"=>"<div style='color:#FFFFFF;'>Site Maintenance</div>","text"=>"<div style='color:#FFFFFF;'>Go here to set things up!</div>");
-}
+$tile[] = array("type"=>"slide","group"=>6,"x"=>0,"y"=>0,'width'=>2,'height'=>1,"background"=>"#008080","url"=>"admin/accountmaint.php",
+		"text"=>"<h3 style='color:#000000;'>Maintenance And Settings</h3>","img"=>"img/Config_banner.jpg","imgSize"=>1,
+		"slidePercent"=>0.45,
+		"slideDir"=>"left", // can be up, down, left or right
+		"doSlideText"=>true,"doSlideLabel"=>true,
+		"labelText"=>"<div style='color:#FFFFFF;'>View</div>","labelColor"=>"#008080","labelPosition"=>"top");
+	}
 
 
 
