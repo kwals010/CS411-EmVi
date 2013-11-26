@@ -105,6 +105,6 @@ echo '</table>';
 
 ?>
 <p>
-<a href="panels/content/addcontent.php">Add new content</a>
+<a href="panels/content/addcontent.php">
+<img alt="New_Content_Button" src="img/addcontent.png" height="31" width="197"></a>
 </p>
-
