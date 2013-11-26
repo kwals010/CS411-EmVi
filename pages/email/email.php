@@ -106,6 +106,6 @@ echo '</table>';
 
 ?>
 <p>
-<a href="panels/email/addemail.php">Add new email</a>
+<a href="panels/email/addemail.php">
+<img alt="New_Email_Button" src="img/addemail.png" height="31" width="197"></a>
 </p>
-

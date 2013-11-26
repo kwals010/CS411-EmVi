@@ -160,6 +160,6 @@ echo '</table>';
 ?>
 <p>
 <a href="panels/campaigns/addcampaign.php">
-<img alt="New_Campaign_Button" src="img/New_Campaign_but.png" height="31" width="197"></a>
+<img alt="New_Campaign_Button" src="img/addcampaign.png" height="31" width="197"></a>
 </p>
 

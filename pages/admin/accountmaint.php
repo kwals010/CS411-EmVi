@@ -59,7 +59,7 @@ $mainNav.set("administration") // this line colors the top button main nav with 
 
 <h1>User Maintenance</h1>
 <a href="panels/user/adduser.php">
-<img alt="New_Campaign_Button" src="img/add_new_user_button.png" height="31" width="197"></a>
+<img alt="New_Campaign_Button" src="img/adduser.png" height="31" width="197"></a>
 
 <h2> Modify user account information</h2>
 <table bgcolor= #D28A1E style=" color: navy">
